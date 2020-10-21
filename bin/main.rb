@@ -164,6 +164,8 @@ class Game
   puts "this ended as a draw" if i == 9
 end  
 
+
+
   # this method check if player_1 or player_2 is typing
   def check_player_turns
     if $player_1.turn == true
@@ -175,12 +177,39 @@ end
 
   # this method check all the possible matches to win the game every time a player input a number
   def check_winner
-    
+    if( ( active_board.cells[2][0] == active_board.cells[2][1]) && ( active_board.cells[2][0] ==  active_board.cells[2][2]) && ( active_board.cells[2][1] ==  active_board.cells[2][2]) && active_board.cells[2][0] != " " && active_board.cells[2][1] != " " && active_board.cells[2][2] != " " )
+      active_board.display_board_game
+      game_over
+    elsif (( active_board.cells[1][0] ==  active_board.cells[1][1]) && ( active_board.cells[1][0] ==  active_board.cells[1][2]) && ( active_board.cells[1][1] ==  active_board.cells[1][2]) && active_board.cells[1][1] != " " && active_board.cells[1][0] != " " && active_board.cells[1][2] != " " )
+      active_board.display_board_game
+      game_over
+    elsif (( active_board.ells[0][0] ==  active_board.cells[0][1]) && ( active_board.cells[0][0] ==  active_board.cells[0][2]) && ( active_board.cells[0][1] ==  active_board.cells[0][2]) && active_board.cells[0][1] != " " && active_board.cells[0][0] != " " && active_board.cells[0][2] != " " )
+      active_board.display_board_game
+      game_over
+    elsif (( active_board.cells[2][0] ==  active_board.cells[1][0]) && ( active_board.cells[2][0] ==  active_board.cells[0][0]) && ( active_board.cells[1][0] ==  active_board.cells[0][0]) && active_board.cells[2][0] != " " && active_board.cells[1][0] != " " && active_board.cells[0][0] != " " )
+      active_board.display_board_game
+      game_over
+    elsif (( active_board.cells[2][1] ==  active_board.cells[1][1]) && ( active_board.cells[2][1] ==  active_board.cells[0][1]) && ( active_board.cells[1][1] ==  active_board.cells[0][1]) && active_board.cells[2][1] != " " && active_board.cells[1][1] != " " && active_board.cells[0][1] != " ") 
+      active_board.display_board_game
+      game_over
+    elsif (( active_board.cells[2][2] ==  active_board.cells[1][2]) && ( active_board.cells[2][2] ==  active_board.cells[0][2]) && ( active_board.cells[1][2] ==  active_board.cells[0][2]) && active_board.cells[1][2] != " " && active_board.cells[2][2] != " " && active_board.cells[0][2] != " " )
+      active_board.display_board_game
+      game_over
+    elsif (( active_board.cells[2][0] ==  active_board.cells[1][1]) && ( active_board.cells[2][0] ==  active_board.cells[0][2]) && ( active_board.cells[1][1] ==  active_board.cells[0][2]) && active_board.cells[1][1] != " " && active_board.cells[2][0] != " " && active_board.cells[0][2] != " " )
+      active_board.display_board_game
+      game_over
+    elsif (( active_board.cells[0][0] =  active_board.cells[1][1]) && ( active_board.cells[0][0] ==  active_board.cells[2][2]) && ( active_board.cells[1][1] ==  active_board.cells[2][2]) && active_board.cells[1][1] != " " && active_board.cells[0][0] != " "  && active_board.cells[2][2] != " ") 
+      active_board.display_board_game
+      game_over
   end
 
+ 
+
   # this method displays a message if there is a winner
-  def final_game
-    
+  def game_over
+    puts "GAME OVER! #{$current_turn.name} wins!"
+    gets
+    return 0
   end
 end 
 
@@ -188,3 +217,5 @@ end
 # those lines are for calling the methods and runs the code in terminal
 play = Game.new
 play.players_info
+
+end
