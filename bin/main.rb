@@ -42,13 +42,13 @@ class Board
     system "clear"
     puts "  |‾‾‾‾‾|‾‾‾‾‾|‾‾‾‾‾|"
     puts "  |  #{@cells[0][0]}  |  #{@cells[0][1]}  |  #{@cells[0][2]}  |"
-    puts "  |7_____|8_____|9_____|"
-    puts "  |      |      |      |"
+    puts "  |7____|8____|9____|"
+    puts "  |     |     |     |"
     puts "  |  #{@cells[1][0]}  |  #{@cells[1][1]}  |  #{@cells[1][2]}  |"
-    puts "  |4_____|5_____|6_____|"
-    puts "  |      |      |      |"
+    puts "  |4____|5____|6____|"
+    puts "  |     |     |     |"
     puts "  |  #{@cells[2][0]}  |  #{@cells[2][1]}  |  #{@cells[2][2]}  |"
-    puts "  |1_____|2_____|3_____|"
+    puts "  |1____|2____|3____|"
     puts ""
   end  
 
@@ -144,25 +144,25 @@ class Game
     while i < 9 do
       @active_board.display_board_game
       check_player_turns
-      puts "#{current_turn.name}, choose a spot (number) to play"
-      $chosen_move = gets.chomp
-      if !$chosen_move.include? (1..9)
+      puts "#{$current_turn.name}, choose a spot (number) to play"
+      $chosen_move = gets.chomp.to_i
+      if !(1..9).include?($chosen_move)
         puts "You hace to choose a number between 1 - 9"
         redo
       end
-      if active_board.choosen_spot == 0
-        puts "You hace to choose another spot"
+      if active_board.choose_spot == 0
+        puts "You have to choose another spot"
         redo
       end
-      active_board.choosen_spot
+      active_board.choose_spot
       $player_1.turn = !$player_1.turn
       $player_2.turn = !$player_2.turn
       break if self.check_winner == 0
       i += 1
-  end
-  active_board.display_board_game
-  puts "this ended as a draw" if i == 9
-end  
+    end
+    active_board.display_board_game
+    puts "this ended as a draw" if i == 9
+  end  
 
 
 
@@ -201,7 +201,8 @@ end
     elsif (( active_board.cells[0][0] =  active_board.cells[1][1]) && ( active_board.cells[0][0] ==  active_board.cells[2][2]) && ( active_board.cells[1][1] ==  active_board.cells[2][2]) && active_board.cells[1][1] != " " && active_board.cells[0][0] != " "  && active_board.cells[2][2] != " ") 
       active_board.display_board_game
       game_over
-  end
+    end
+  end  
 
  
 
@@ -217,5 +218,4 @@ end
 # those lines are for calling the methods and runs the code in terminal
 play = Game.new
 play.players_info
-
-end
+play.play_game
