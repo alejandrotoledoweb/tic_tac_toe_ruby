@@ -1,3 +1,12 @@
+# For this game we need:
+# - collect the players info
+# - show the board in the terminal
+# - lets decide who is going to play first
+# - ask for a spot in the board for each player
+# - replace the symbol of player inside the board according of the spot the player chose
+# - check everytime a player input a symbol if there is a winner
+# - display a winner or draw message
+
 class FirstSetup
   attr_reader :name, :symbol
   attr_accessor :turn
@@ -14,22 +23,23 @@ class FirstSetup
   end
 end
 
-
+# In this class we created a random number and choose who is going to play first
 class BeginRandom
 
   def coin_flip
     coin = rand(2)
 
     if coin == 1
-      puts 'we get HEADS UP'
+      puts "we get HEADS UP"
       return true
     else 
-      puts 'we get TAILS'
+      puts "we get TAILS"
       return false
     end  
   end
 end
 
+# for this class we have the visual board that appears in the terminal with the symbols of each player
 class Board
   attr_accessor :cells
   @cells = []
@@ -52,6 +62,7 @@ class Board
   end  
 end
 
+# in this method we check if the input of the player is inside the board and we replace it with the symbol of each player
 def choose_move
   case $chosen_move
   when 1
@@ -112,6 +123,7 @@ end
 end
 end
 
+# in the Game class we have the FirstSetup class working and getting the info from the players
 class Game
   attr_accessor :active_board
   def initialize
@@ -119,11 +131,47 @@ class Game
   end
   
   def players_info
-    puts "Player 1 type your name and symbol: "
+    puts "Welcome to our tic tac toe game!"
+    puts "Player 1 type your name, type enter and enter you symbol: "
     $player_1 = FirstSetup.new(gets.chomp, gets.chomp)
-    puts "Player 2 type your name"
+    puts "Welcome #{$player_1.name}, you are the first player, and you symbol is '#{$player_1.symbol}'"
+    puts "Player 2 type your name, type enter and type symbol: "
     $player_2 = FirstSetup.new(gets.chomp, gets.chomp)
+    puts "Welcome #{$player_2.name}, you are the second player, and you symbol is '#{$player_2.symbol}'"
+    puts "Let's decide who is going first, let's flip a coin. press enter"
+    puts "#{$player_1.name}, you're HEADS. #{$player_2.name}, you're TAILS."
+    gets
+    flip = BeginRandom.new
+    $player_1.turn = flip.coin_flip
+    $player_2.turn = !player_1.turn
+    $player_1.first_turn
+    $player_2.first_turn
+    gets
+  end
+
+  # this method is goin to join all other methods and make the game works
+
+  def play_game
+    
+  end
+
+  # this method check if player_1 or player_2 is typing
+  def check_player_turns
+    
+  end
+
+  # this method check all the possible matches to win the game every time a player input a number
+  def check_winner
+    
+  end
+
+  # this method displays a message if there is a winner
+  def final_game
+    
   end
 end 
 
 
+# those lines are for calling the methods and runs the code in terminal
+play = Game.new
+play.players_info
