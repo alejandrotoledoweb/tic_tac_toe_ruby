@@ -55,56 +55,56 @@ class Board
   def choose_spot
     case $chosen_move
     when 1
-      if @cells[2][0].empty?
-        @cells[2][0] = "#{$current_player.symbol}" 
+      if @cells[2][0] == " "
+        @cells[2][0] = "#{$current_turn.symbol}" 
       else 
         return "Choose another cell"
       end
     when 2 
-      if @cells[2][1].empty?
-        @cells[2][1] = "#{$current_player.symbol}" 
+      if @cells[2][1] == " "
+        @cells[2][1] = "#{$current_turn.symbol}" 
       else
         return "Choose another cell"
       end
     when 3
-      if @cells[2][2].empty?
-        @cells[2][2] = "#{$current_player.symbol}" 
-        else 
+      if @cells[2][2] == " "
+        @cells[2][2] = "#{$current_turn.symbol}" 
+      else 
         return "Choose another cell"
       end
     when 4
-      if @cells[1][0].empty?
-        @cells[1][0] = "#{$current_player.symbol}" 
+      if @cells[1][0] == " "
+        @cells[1][0] = "#{$current_turn.symbol}" 
       else 
         return "Choose another cell"
       end
     when 5
-      if @cells[1][1].empty?
-        @cells[1][1] = "#{$current_player.symbol}" 
+      if @cells[1][1] == " "
+        @cells[1][1] = "#{$current_turn.symbol}" 
       else 
         return "Choose another cell"
       end
     when 6
-      if @cells[1][2].empty?
-        @cells[1][2] = "#{$current_player.symbol}" 
+      if @cells[1][2] == " "
+        @cells[1][2] = "#{$current_turn.symbol}" 
       else 
         return "Choose another cell"
-      end
+      end 
     when 7
-      if @cells[0][0].empty?
-        @cells[0][0] = "#{$current_player.symbol}" 
+      if @cells[0][0] == " "
+        @cells[0][0] = "#{$current_turn.symbol}" 
       else 
         return "Choose another cell"
       end
     when 8
-      if @cells[0][1].empty?
-        @cells[0][1] = "#{$current_player.symbol}" 
+      if @cells[0][1] == " "
+        @cells[0][1] = "#{$current_turn.symbol}" 
       else 
         return "Choose another cell"
       end
     when 9
-      if @cells[0][2].empty?
-        @cells[0][2] = "#{$current_player.symbol}" 
+      if @cells[0][2] == " "
+        @cells[0][2] = "#{$current_turn.symbol}" 
       else 
         return "Choose another cell"
       end
