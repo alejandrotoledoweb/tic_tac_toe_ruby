@@ -13,4 +13,3 @@
 # - check if that move was a winning or draw move,update the board with the player_2's symbol
 # - display if there is a winner or is a draw
 # - end of the game
-
