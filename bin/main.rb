@@ -46,12 +46,13 @@ class Board
 
   def display_board_game
    
-end
+  end
 
 # in this method we check if the input of the player is inside the board and we replace it with the symbol of each player
-def choose_move
- 
-end
+  def choose_move
+  
+  end
+end  
 
 # in the Game class we have the FirstSetup class working and getting the info from the players
 class Game
