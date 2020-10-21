@@ -26,7 +26,29 @@ class BeginRandom
     else 
       puts 'we get TAILS'
       return false
-
-  end  
-  
+    end  
+  end
 end
+
+class Board
+  attr_accessor :cells
+  @cells = []
+
+  def initialize
+    @cells = [[" ", " ", " "],[" ", " ", " "],[" ", " ", " "]]
+  end
+
+  def display_board_game
+    puts "  |‾‾‾‾‾|‾‾‾‾‾|‾‾‾‾‾|"
+    puts "  |  #{@cells[0][0]}  |  #{@cells[0][1]}  |  #{@cells[0][2]}  |"
+    puts "  |7_____|8_____|9_____|"
+    puts "  |      |      |      |"
+    puts "  |  #{@cells[1][0]}  |  #{@cells[1][1]}  |  #{@cells[1][2]}  |"
+    puts "  |4_____|5_____|6_____|"
+    puts "  |      |      |      |"
+    puts "  |  #{@cells[2][0]}  |  #{@cells[2][1]}  |  #{@cells[2][2]}  |"
+    puts "  |1_____|2_____|3_____|"
+    puts ""
+  end  
+end
+
