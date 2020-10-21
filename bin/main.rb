@@ -1,11 +1,17 @@
 # For this game we need:
 # - collect the players info
-# - show the board in the terminal
+# - show the board in the terminal all the time
 # - lets decide who is going to play first
-# - ask for a spot in the board for each player
-# - replace the symbol of player inside the board according of the spot the player chose
-# - check everytime a player input a symbol if there is a winner
-# - display a winner or draw message
+# - we start a loop counting the number of moves for the two players, until we got a maximun of 9 moves and if anyone wins it's a draw
+# - ask for a spot in the board for the first player
+# - check if that move is a valid move
+# - check if that move was a winning or draw move,update the board with the player_1's symbol
+# - change players turn
+# - ask for a spot in the board for the second player
+# - check if that move is a valid move
+# - check if that move was a winning or draw move,update the board with the player_2's symbol
+# - display if there is a winner or is a draw
+# - end of the game
 
 class FirstSetup
   attr_reader :name, :symbol
@@ -146,7 +152,6 @@ class Game
     $player_2.turn = !player_1.turn
     $player_1.first_turn
     $player_2.first_turn
-    gets
   end
 
   # this method is goin to join all other methods and make the game works
