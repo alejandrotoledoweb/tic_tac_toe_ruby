@@ -1,12 +1,3 @@
-# For this game we need:
-# - collect the players info
-# - show the board in the terminal
-# - lets decide who is going to play first
-# - ask for a spot in the board for each player
-# - replace the symbol of player inside the board according of the spot the player chose
-# - check everytime a player input a symbol if there is a winner
-# - display a winner or draw message
-
 class FirstSetup
   attr_reader :name, :symbol
   attr_accessor :turn
@@ -20,10 +11,10 @@ class FirstSetup
   def first_turn
     if @turn == true
       puts "#{self.name} you are first"
-  end
+    end
+  end  
 end
 
-# In this class we created a random number and choose who is going to play first
 class BeginRandom
 
   def coin_flip
@@ -39,7 +30,6 @@ class BeginRandom
   end
 end
 
-# for this class we have the visual board that appears in the terminal with the symbols of each player
 class Board
   attr_accessor :cells
   @cells = []
@@ -49,6 +39,7 @@ class Board
   end
 
   def display_board_game
+    system "clear"
     puts "  |‾‾‾‾‾|‾‾‾‾‾|‾‾‾‾‾|"
     puts "  |  #{@cells[0][0]}  |  #{@cells[0][1]}  |  #{@cells[0][2]}  |"
     puts "  |7_____|8_____|9_____|"
@@ -60,74 +51,71 @@ class Board
     puts "  |1_____|2_____|3_____|"
     puts ""
   end  
-end
 
-# in this method we check if the input of the player is inside the board and we replace it with the symbol of each player
-def choose_move
-  case $chosen_move
-  when 1
-    if @cells[2][0].empty?
-      @cells[2][0] = "#{$current_player.symbol}" 
-    else 
-      return "Choose another cell"
-    end
-  when 2 
-    if @cells[2][1].empty?
-      @cells[2][1] = "#{$current_player.symbol}" 
-    else
-      return "Choose another cell"
-    end
-  when 3
-    if @cells[2][2].empty?
-      @cells[2][2] = "#{$current_player.symbol}" 
+  def choose_spot
+    case $chosen_move
+    when 1
+      if @cells[2][0].empty?
+        @cells[2][0] = "#{$current_player.symbol}" 
       else 
-      return "Choose another cell"
+        return "Choose another cell"
+      end
+    when 2 
+      if @cells[2][1].empty?
+        @cells[2][1] = "#{$current_player.symbol}" 
+      else
+        return "Choose another cell"
+      end
+    when 3
+      if @cells[2][2].empty?
+        @cells[2][2] = "#{$current_player.symbol}" 
+        else 
+        return "Choose another cell"
+      end
+    when 4
+      if @cells[1][0].empty?
+        @cells[1][0] = "#{$current_player.symbol}" 
+      else 
+        return "Choose another cell"
+      end
+    when 5
+      if @cells[1][1].empty?
+        @cells[1][1] = "#{$current_player.symbol}" 
+      else 
+        return "Choose another cell"
+      end
+    when 6
+      if @cells[1][2].empty?
+        @cells[1][2] = "#{$current_player.symbol}" 
+      else 
+        return "Choose another cell"
+      end
+    when 7
+      if @cells[0][0].empty?
+        @cells[0][0] = "#{$current_player.symbol}" 
+      else 
+        return "Choose another cell"
+      end
+    when 8
+      if @cells[0][1].empty?
+        @cells[0][1] = "#{$current_player.symbol}" 
+      else 
+        return "Choose another cell"
+      end
+    when 9
+      if @cells[0][2].empty?
+        @cells[0][2] = "#{$current_player.symbol}" 
+      else 
+        return "Choose another cell"
+      end
     end
-  when 4
-    if @cells[1][0].empty?
-      @cells[1][0] = "#{$current_player.symbol}" 
-    else 
-      return "Choose another cell"
-    end
-  when 5
-    if @cells[1][1].empty?
-      @cells[1][1] = "#{$current_player.symbol}" 
-    else 
-      return "Choose another cell"
-    end
-when 6
-if @cells[1][2].empty?
-  @cells[1][2] = "#{$current_player.symbol}" 
-else 
-  return "Choose another cell"
-end
-when 7
-if @cells[0][0].empty?
-  @cells[0][0] = "#{$current_player.symbol}" 
-else 
-  return "Choose another cell"
-end
-when 8
-if @cells[0][1].empty?
-  @cells[0][1] = "#{$current_player.symbol}" 
-else 
-  return "Choose another cell"
-end
-when 9
-if @cells[0][2].empty?
-  @cells[0][2] = "#{$current_player.symbol}" 
-else 
-  return "Choose another cell"
-end
-end
-end
+  end
 end
 
-# in the Game class we have the FirstSetup class working and getting the info from the players
 class Game
   attr_accessor :active_board
   def initialize
-    # @active_board = Board.new
+    @active_board = Board.new
   end
   
   def players_info
@@ -143,7 +131,7 @@ class Game
     gets
     flip = BeginRandom.new
     $player_1.turn = flip.coin_flip
-    $player_2.turn = !player_1.turn
+    $player_2.turn = !$player_1.turn
     $player_1.first_turn
     $player_2.first_turn
     gets
@@ -152,12 +140,37 @@ class Game
   # this method is goin to join all other methods and make the game works
 
   def play_game
-    
+    i = 0
+    while i < 9 do
+      @active_board.display_board_game
+      check_player_turns
+      puts "#{current_turn.name}, choose a spot (number) to play"
+      $chosen_move = gets.chomp
+      if !$chosen_move.include? (1..9)
+        puts "You hace to choose a number between 1 - 9"
+        redo
+      end
+      if active_board.choosen_spot == 0
+        puts "You hace to choose another spot"
+        redo
+      end
+      active_board.choosen_spot
+      $player_1.turn = !$player_1.turn
+      $player_2.turn = !$player_2.turn
+      break if self.check_winner == 0
+      i += 1
   end
+  active_board.display_board_game
+  puts "this ended as a draw" if i == 9
+end  
 
   # this method check if player_1 or player_2 is typing
   def check_player_turns
-    
+    if $player_1.turn == true
+      $current_turn = $player_1
+    else 
+      $current_turn = $player_2 
+    end   
   end
 
   # this method check all the possible matches to win the game every time a player input a number
