@@ -1,5 +1,5 @@
-# rubocop:disable Metrics/ModuleLength
 # rubocop:disable Metrics/CyclomaticComplexity
+# rubocop:disable Metrics/ModuleLength
 # rubocop:disable Metrics/PerceivedComplexity
 # rubocop:disable Style/RedundantSelf
 # rubocop:disable Metrics/AbcSize
@@ -247,8 +247,8 @@ play = Game.new
 play.players_info
 play.play_game
 
-# rubocop:enable Metrics/ModuleLength
 # rubocop:enable Metrics/CyclomaticComplexity
+# rubocop:enable Metrics/ModuleLength
 # rubocop:enable Metrics/PerceivedComplexity
 # rubocop:enable Style/RedundantSelf
 # rubocop:enable Metrics/AbcSize
