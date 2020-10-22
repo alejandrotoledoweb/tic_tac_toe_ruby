@@ -1,5 +1,4 @@
 # rubocop:disable Metrics/CyclomaticComplexity
-# rubocop:disable Metrics/ModuleLength
 # rubocop:disable Metrics/PerceivedComplexity
 # rubocop:disable Style/RedundantSelf
 # rubocop:disable Metrics/AbcSize
@@ -42,6 +41,7 @@ class FirstSetup
   end
 end
 
+# This is Coin Section
 class BeginRandom
   def coin_flip
     coin = rand(2)
@@ -56,6 +56,7 @@ class BeginRandom
   end
 end
 
+# This is Class Board
 class Board
   attr_accessor :cells
 
@@ -65,6 +66,7 @@ class Board
     @cells = [[' ', ' ', ' '], [' ', ' ', ' '], [' ', ' ', ' ']]
   end
 
+  # rubocop:disable Metrics/MethodLength
   def display_board_game
     system 'clear'
     puts '  |‾‾‾‾‾|‾‾‾‾‾|‾‾‾‾‾|'
@@ -78,7 +80,9 @@ class Board
     puts '  |1____|2____|3____|'
     puts ''
   end
+  # rubocop:enableMetrics/MethodLength
 
+  # rubocop:disable Metrics/MethodLength
   def choose_spot
     case $chosen_move
     when 1
@@ -139,6 +143,7 @@ class Board
   end
 end
 
+# This is the Game Class
 class Game
   attr_accessor :active_board
 
@@ -167,6 +172,7 @@ class Game
 
   # this method is goin to join all other methods and make the game works
 
+  # rubocop:disable Metrics/MethodLength
   def play_game
     i = 0
     while i < 9 do
@@ -195,6 +201,7 @@ class Game
     active_board.display_board_game
     puts 'this ended as a draw' if i == 9
   end
+  # rubocop:enable Metrics/MethodLength
 
   # this method check if player_1 or player_2 is typing
   def check_player_turns
@@ -206,6 +213,7 @@ class Game
   end
 
   # this method check all the possible matches to win the game every time a player input a number
+  # rubocop:disable Metrics/MethodLength
   def check_winner
     if ((active_board.cells[2][0] == active_board.cells[2][1]) && (active_board.cells[2][0] == active_board.cells[2][2]) && (active_board.cells[2][1] == active_board.cells[2][2]) && active_board.cells[2][0] != ' ' && active_board.cells[2][1] != ' ' && active_board.cells[2][2] != ' ')
       active_board.display_board_game
@@ -233,6 +241,7 @@ class Game
       game_over
     end
   end
+  # rubocop:enable Metrics/MethodLength
 
   # this method displays a message if there is a winner
   def game_over
@@ -248,7 +257,6 @@ play.players_info
 play.play_game
 
 # rubocop:enable Metrics/CyclomaticComplexity
-# rubocop:enable Metrics/ModuleLength
 # rubocop:enable Metrics/PerceivedComplexity
 # rubocop:enable Style/RedundantSelf
 # rubocop:enable Metrics/AbcSize
