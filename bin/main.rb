@@ -11,6 +11,7 @@
 # rubocop:disable Style/ConditionalAssignment
 # rubocop:disable Layout/LineLength
 # rubocop:disable Style/WhileUntilDo
+# rubocop:disable Lint/RedundantCopDisableDirective
 
 # - collect the players info
 # - show the board in the terminal all the time
@@ -259,3 +260,4 @@ play.play_game
 # rubocop:enable Style/ConditionalAssignment
 # rubocop:enable Layout/LineLength
 # rubocop:enable Style/WhileUntilDo
+# rubocop:enable Lint/RedundantCopDisableDirective
