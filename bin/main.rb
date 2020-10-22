@@ -1,3 +1,8 @@
+# rubocop:disable Metrics/ModuleLength
+# rubocop:disable Metrics/CyclomaticComplexity
+# rubocop:disable Metrics/PerceivedComplexity
+# rubocop:disable Style/RedundantSelf
+
 # - collect the players info
 # - show the board in the terminal all the time
 # - lets decide who is going to play first
@@ -43,6 +48,7 @@ end
 
 class Board
   attr_accessor :cells
+  
   @cells = []
 
   def initialize
@@ -222,3 +228,8 @@ end
 play = Game.new
 play.players_info
 play.play_game
+
+# rubocop:enable Metrics/ModuleLength
+# rubocop:enable Metrics/CyclomaticComplexity
+# rubocop:enable Metrics/PerceivedComplexity
+# rubocop:enable Style/RedundantSelf
