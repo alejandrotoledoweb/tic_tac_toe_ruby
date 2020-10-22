@@ -9,7 +9,7 @@
 # rubocop:disable Style/RedundantInterpolation
 # rubocop:disable Lint/RedundantCopDisableDirective
 # rubocop:disable Style/ConditionalAssignment
-# rubocop:disable LineLength
+# rubocop:disable Layout/LineLength
 # rubocop:disable Style/WhileUntilDo
 
 # - collect the players info
@@ -257,5 +257,5 @@ play.play_game
 # rubocop:enable Style/RedundantInterpolation
 # rubocop:enable Lint/RedundantCopDisableDirective
 # rubocop:enable Style/ConditionalAssignment
-# rubocop:enable LineLength
-# rubocop:disable Style/WhileUntilDo
+# rubocop:enable Layout/LineLength
+# rubocop:enable Style/WhileUntilDo
