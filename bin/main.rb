@@ -23,24 +23,21 @@ class FirstSetup
   end
 
   def first_turn
-    if @turn == true
-      puts "#{self.name} you are first"
-    end
-  end  
+    puts "#{$player_1.name} you are first" if $player_1.turn == true
+  end
 end
 
 class BeginRandom
-
   def coin_flip
     coin = rand(2)
 
     if coin == 1
-      puts "we get HEADS UP"
-      return true
-    else 
-      puts "we get TAILS"
-      return false
-    end  
+      puts 'we get HEADS UP'
+      true
+    else
+      puts 'we get TAILS'
+      false
+    end
   end
 end
 
@@ -49,76 +46,76 @@ class Board
   @cells = []
 
   def initialize
-    @cells = [[" ", " ", " "],[" ", " ", " "],[" ", " ", " "]]
+    @cells = [[' ', ' ', ' '], [' ', ' ', ' '], [' ', ' ', ' ']]
   end
 
   def display_board_game
-    system "clear"
-    puts "  |‾‾‾‾‾|‾‾‾‾‾|‾‾‾‾‾|"
-    puts "  |  #{@cells[0][0]}  |  #{@cells[0][1]}  |  #{@cells[0][2]}  |"
-    puts "  |7____|8____|9____|"
-    puts "  |     |     |     |"
+    system 'clear'
+    puts '  |‾‾‾‾‾|‾‾‾‾‾|‾‾‾‾‾|'
+    puts "|  #{@cells[0][0]}  |  #{@cells[0][1]}  |  #{@cells[0][2]}  |"
+    puts '  |7____|8____|9____|'
+    puts '  |     |     |     |'
     puts "  |  #{@cells[1][0]}  |  #{@cells[1][1]}  |  #{@cells[1][2]}  |"
-    puts "  |4____|5____|6____|"
-    puts "  |     |     |     |"
+    puts '  |4____|5____|6____|'
+    puts '  |     |     |     |'
     puts "  |  #{@cells[2][0]}  |  #{@cells[2][1]}  |  #{@cells[2][2]}  |"
-    puts "  |1____|2____|3____|"
-    puts ""
+    puts '  |1____|2____|3____|'
+    puts ''
   end
 
   def choose_spot
     case $chosen_move
     when 1
-      if @cells[2][0] == " "
-        @cells[2][0] = "#{$current_turn.symbol}" 
+      if @cells[2][0] == ' '
+        @cells[2][0] = '#{current_turn.symbol}'
       else 
         return 0
       end
     when 2 
-      if @cells[2][1] == " "
-        @cells[2][1] = "#{$current_turn.symbol}"
+      if @cells[2][1] == ' '
+        @cells[2][1] = "#{current_turn.symbol}"
       else
         return 0
       end
     when 3
-      if @cells[2][2] == " "
-        @cells[2][2] = "#{$current_turn.symbol}" 
+      if @cells[2][2] == ' '
+        @cells[2][2] = "#{current_turn.symbol}" 
         else 
         return 0
       end
     when 4
-      if @cells[1][0] == " "
-        @cells[1][0] = "#{$current_turn.symbol}"
+      if @cells[1][0] == ' '
+        @cells[1][0] = "#{current_turn.symbol}"
       else 
         return 0
       end
     when 5
-      if @cells[1][1] == " "
-        @cells[1][1] = "#{$current_turn.symbol}" 
+      if @cells[1][1] == ' '
+        @cells[1][1] = "#{current_turn.symbol}" 
       else 
         return 0
       end
     when 6
-      if @cells[1][2] == " "
-        @cells[1][2] = "#{$current_turn.symbol}"
+      if @cells[1][2] == ' '
+        @cells[1][2] = "#{current_turn.symbol}"
       else 
         return 0
       end
     when 7
-      if @cells[0][0] == " "
-        @cells[0][0] = "#{$current_turn.symbol}" 
+      if @cells[0][0] == ' '
+        @cells[0][0] = "#{current_turn.symbol}" 
       else 
         return 0
       end
     when 8
-      if @cells[0][1] == " "
-        @cells[0][1] = "#{$current_turn.symbol}" 
+      if @cells[0][1] == ' '
+        @cells[0][1] = "#{current_turn.symbol}" 
       else 
         return 0
       end
     when 9
-      if @cells[0][2] == " "
-        @cells[0][2] = "#{$current_turn.symbol}"
+      if @cells[0][2] == ' '
+        @cells[0][2] = "#{current_turn.symbol}"
       else 
         return 0
       end
@@ -156,7 +153,7 @@ class Game
     while i < 9 do
       @active_board.display_board_game
       check_player_turns
-      puts "#{$current_turn.name}, choose available spot (number) to play"
+      puts "#{current_turn.name}, choose available spot (number) to play"
       $chosen_move = gets.chomp.to_i
       puts "Your move is #{$chosen_move}"
       if !(1..9).include?($chosen_move)
@@ -181,14 +178,14 @@ class Game
   # this method check if player_1 or player_2 is typing
   def check_player_turns
     if $player_1.turn == true
-      $current_turn = $player_1
+      current_turn = $player_1
     else
-      $current_turn = $player_2
+      current_turn = $player_2
     end
   end
   # this method check all the possible matches to win the game every time a player input a number
   def check_winner
-    if( ( active_board.cells[2][0] == active_board.cells[2][1]) && ( active_board.cells[2][0] ==  active_board.cells[2][2]) && ( active_board.cells[2][1] ==  active_board.cells[2][2]) && active_board.cells[2][0] != " " && active_board.cells[2][1] != " " && active_board.cells[2][2] != " " )
+    if( ( active_board.cells[2][0] == active_board.cells[2][1]) && ( active_board.cells[2][0] ==  active_board.cells[2][2]) && ( active_board.cells[2][1] ==  active_board.cells[2][2]) && active_board.cells[2][0] != ' ' && active_board.cells[2][1] != " " && active_board.cells[2][2] != " " )
       active_board.display_board_game
       game_over
     elsif (( active_board.cells[1][0] ==  active_board.cells[1][1]) && ( active_board.cells[1][0] ==  active_board.cells[1][2]) && ( active_board.cells[1][1] ==  active_board.cells[1][2]) && active_board.cells[1][1] != " " && active_board.cells[1][0] != " " && active_board.cells[1][2] != " " )
@@ -216,7 +213,7 @@ class Game
   end
   # this method displays a message if there is a winner
   def game_over
-    puts "GAME OVER! #{$current_turn.name} wins!"
+    puts "GAME OVER! #current_turn.name} wins!"
     gets
     return 0
   end
