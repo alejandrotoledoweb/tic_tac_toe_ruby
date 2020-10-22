@@ -7,6 +7,10 @@
 # rubocop:disable Style/GlobalVars
 # rubocop:disable Style/NumericPredicate
 # rubocop:disable Style/RedundantInterpolation
+# rubocop:disable Lint/RedundantCopDisableDirective
+# rubocop:disable Style/ConditionalAssignment
+# rubocop:disable LineLength
+
 
 # - collect the players info
 # - show the board in the terminal all the time
@@ -193,19 +197,19 @@ class Game
 
   # this method check if player_1 or player_2 is typing
   def check_player_turns
-    if $player_1.turn == true
-      $current_turn = $player_1
-    else
-      $current_turn = $player_2
-    end
+    $current_turn = if $player_1.turn == true
+    $current_turn = $player_1
+  else
+    $current_turn = $player_2
+  end
   end
 
   # this method check all the possible matches to win the game every time a player input a number
   def check_winner
-    if ((active_board.cells[2][0] == active_board.cells[2][1]) && (active_board.cells[2][0] ==  active_board.cells[2][2]) && ( active_board.cells[2][1] ==  active_board.cells[2][2]) && active_board.cells[2][0] != ' ' && active_board.cells[2][1] != ' ' && active_board.cells[2][2] != ' ')
+    if ((active_board.cells[2][0] == active_board.cells[2][1]) && (active_board.cells[2][0] == active_board.cells[2][2]) && (active_board.cells[2][1] == active_board.cells[2][2]) && active_board.cells[2][0] != ' ' && active_board.cells[2][1] != ' ' && active_board.cells[2][2] != ' ')
       active_board.display_board_game
       game_over
-    elsif ((active_board.cells[1][0] == active_board.cells[1][1]) && (active_board.cells[1][0] == active_board.cells[1][2]) && (active_board.cells[1][1] ==  active_board.cells[1][2]) && active_board.cells[1][1] != ' ' && active_board.cells[1][0] != ' ' && active_board.cells[1][2] != ' ')
+    elsif ((active_board.cells[1][0] == active_board.cells[1][1]) && (active_board.cells[1][0] == active_board.cells[1][2]) && (active_board.cells[1][1] == active_board.cells[1][2]) && active_board.cells[1][1] != ' ' && active_board.cells[1][0] != ' ' && active_board.cells[1][2] != ' ')
       active_board.display_board_game
       game_over
     elsif ((active_board.cells[0][0] == active_board.cells[0][1]) && (active_board.cells[0][0] == active_board.cells[0][2]) && (active_board.cells[0][1] == active_board.cells[0][2]) && active_board.cells[0][1] != ' ' && active_board.cells[0][0] != ' ' && active_board.cells[0][2] != ' ')
@@ -223,7 +227,7 @@ class Game
     elsif ((active_board.cells[2][0] == active_board.cells[1][1]) && (active_board.cells[2][0] == active_board.cells[0][2]) && (active_board.cells[1][1] == active_board.cells[0][2]) && active_board.cells[1][1] != ' ' && active_board.cells[2][0] != ' ' && active_board.cells[0][2] != ' ')
       active_board.display_board_game
       game_over
-    elsif ((active_board.cells[0][0] = active_board.cells[1][1]) && (active_board.cells[0][0] == active_board.cells[2][2]) && ( active_board.cells[1][1] == active_board.cells[2][2]) && active_board.cells[1][1] != ' ' && active_board.cells[0][0] != ' '  && active_board.cells[2][2] != ' ')
+    elsif ((active_board.cells[0][0] == active_board.cells[1][1]) && (active_board.cells[0][0] == active_board.cells[2][2]) && ( active_board.cells[1][1] == active_board.cells[2][2]) && active_board.cells[1][1] != ' ' && active_board.cells[0][0] != ' '  && active_board.cells[2][2] != ' ')
       active_board.display_board_game
       game_over
     end
@@ -251,3 +255,7 @@ play.play_game
 # rubocop:enable Style/GlobalVars
 # rubocop:enable Style/NumericPredicate
 # rubocop:enable Style/RedundantInterpolation
+# rubocop:enable Lint/RedundantCopDisableDirective
+# rubocop:enable Style/ConditionalAssignment
+# rubocop:enable LineLength
+
