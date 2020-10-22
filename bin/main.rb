@@ -2,13 +2,11 @@
 # rubocop:disable Metrics/PerceivedComplexity
 # rubocop:disable Style/RedundantSelf
 # rubocop:disable Metrics/AbcSize
-# rubocop:disable Style/ParenthesesAroundCondition
 # rubocop:disable Style/GlobalVars
 # rubocop:disable Style/NumericPredicate
 # rubocop:disable Style/RedundantInterpolation
 # rubocop:disable Lint/RedundantCopDisableDirective
 # rubocop:disable Style/ConditionalAssignment
-# rubocop:disable Layout/LineLength
 # rubocop:disable Style/WhileUntilDo
 # rubocop:disable Lint/RedundantCopDisableDirective
 
@@ -219,7 +217,6 @@ class Game
   # this method check all the possible matches to win the game every time a player input a number
   # rubocop:disable Metrics/MethodLength
   def check_winner
-    
   end
   # rubocop:enable Metrics/MethodLength
 
@@ -240,12 +237,10 @@ play.play_game
 # rubocop:enable Metrics/PerceivedComplexity
 # rubocop:enable Style/RedundantSelf
 # rubocop:enable Metrics/AbcSize
-# rubocop:enable Style/ParenthesesAroundCondition
 # rubocop:enable Style/GlobalVars
 # rubocop:enable Style/NumericPredicate
 # rubocop:enable Style/RedundantInterpolation
 # rubocop:enable Lint/RedundantCopDisableDirective
 # rubocop:enable Style/ConditionalAssignment
-# rubocop:enable Layout/LineLength
 # rubocop:enable Style/WhileUntilDo
 # rubocop:enable Lint/RedundantCopDisableDirective
