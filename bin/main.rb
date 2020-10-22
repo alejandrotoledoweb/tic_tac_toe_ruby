@@ -2,13 +2,17 @@
 # rubocop:disable Metrics/CyclomaticComplexity
 # rubocop:disable Metrics/PerceivedComplexity
 # rubocop:disable Style/RedundantSelf
+# rubocop:disable Metrics/AbcSize
+# rubocop:disable Style/ParenthesesAroundCondition
+# rubocop:disable Style/GlobalVars
+# rubocop:disable Style/NumericPredicate
 
 # - collect the players info
 # - show the board in the terminal all the time
 # - lets decide who is going to play first
 # - we start a loop counting the number of moves for the two players,
 # - the loop works until we got a maximun of 9 moves and if anyone wins it's a draw
-# - ask for a spot in the board for the first player
+# - ask for a spot in the board for the player
 # - check if that move is a valid move
 # - check if that move was a winning or draw move,update the board with the player_1's symbol
 # - change players turn
@@ -180,6 +184,7 @@ class Game
       $player_1.turn = !$player_1.turn
       $player_2.turn = !$player_2.turn
       break if self.check_winner == 0
+
       i += 1
     end
     active_board.display_board_game
@@ -225,7 +230,7 @@ class Game
   # this method displays a message if there is a winner
   def game_over
 
-    puts 'GAME OVER! #{$current_turn.name} wins!'
+    puts "GAME OVER! #{$current_turn.name} wins!"
     gets
     0
   end
@@ -239,3 +244,7 @@ play.play_game
 # rubocop:enable Metrics/CyclomaticComplexity
 # rubocop:enable Metrics/PerceivedComplexity
 # rubocop:enable Style/RedundantSelf
+# rubocop:enable Metrics/AbcSize
+# rubocop:enable Style/ParenthesesAroundCondition
+# rubocop:enable Style/GlobalVars
+# rubocop:disable Style/NumericPredicate
