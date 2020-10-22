@@ -11,10 +11,10 @@
 # rubocop:disable Layout/LineLength
 # rubocop:disable Style/WhileUntilDo
 # rubocop:disable Lint/RedundantCopDisableDirective
+# rubocop:disable Style/GuardClause
 
 class FirstSetup
-  attr_reader :name, :symbol
-  attr_accessor :turn
+  attr_reader :name, :symbol# rubocop:disable Style/GuardClause
 
   def initialize(name, symbol)
     @name = name
@@ -257,3 +257,4 @@ play.play_game
 # rubocop:enable Layout/LineLength
 # rubocop:enable Style/WhileUntilDo
 # rubocop:enable Lint/RedundantCopDisableDirective
+# rubocop:enable Style/GuardClause
