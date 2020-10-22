@@ -170,7 +170,7 @@ class Game
       puts "#{$current_turn.name}, choose available spot (number) to play"
       $chosen_move = gets.chomp.to_i
       puts "Your move is #{$chosen_move}"
-      if !(1..9).include?($chosen_move)
+      unless (1..9).include?($chosen_move)
         puts 'You hace to choose a number between 1 - 9'
         sleep(0.7)
         redo
