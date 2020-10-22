@@ -6,6 +6,7 @@
 # rubocop:disable Style/ParenthesesAroundCondition
 # rubocop:disable Style/GlobalVars
 # rubocop:disable Style/NumericPredicate
+# rubocop:disable Style/RedundantInterpolation
 
 # - collect the players info
 # - show the board in the terminal all the time
@@ -90,7 +91,7 @@ class Board
     when 3
       if @cells[2][2] == ' '
         @cells[2][2] = "#{$current_turn.symbol}"
-        else
+      else
         0
       end
     when 4
@@ -113,7 +114,7 @@ class Board
       end
     when 7
       if @cells[0][0] == ' '
-        @cells[0][0] = "#{$current_turn.symbol}" 
+        @cells[0][0] = "#{$current_turn.symbol}"
       else
         0
       end
@@ -162,7 +163,6 @@ class Game
   # this method is goin to join all other methods and make the game works
 
   def play_game
-
     i = 0
     while i < 9 do
       @active_board.display_board_game
@@ -190,6 +190,7 @@ class Game
     active_board.display_board_game
     puts 'this ended as a draw' if i == 9
   end
+
   # this method check if player_1 or player_2 is typing
   def check_player_turns
     if $player_1.turn == true
@@ -198,43 +199,44 @@ class Game
       $current_turn = $player_2
     end
   end
+
   # this method check all the possible matches to win the game every time a player input a number
   def check_winner
-
-    if( ( active_board.cells[2][0] == active_board.cells[2][1]) && ( active_board.cells[2][0] ==  active_board.cells[2][2]) && ( active_board.cells[2][1] ==  active_board.cells[2][2]) && active_board.cells[2][0] != ' ' && active_board.cells[2][1] != " " && active_board.cells[2][2] != " " )
+    if ((active_board.cells[2][0] == active_board.cells[2][1]) && (active_board.cells[2][0] ==  active_board.cells[2][2]) && ( active_board.cells[2][1] ==  active_board.cells[2][2]) && active_board.cells[2][0] != ' ' && active_board.cells[2][1] != ' ' && active_board.cells[2][2] != ' ')
       active_board.display_board_game
       game_over
-    elsif (( active_board.cells[1][0] ==  active_board.cells[1][1]) && ( active_board.cells[1][0] ==  active_board.cells[1][2]) && ( active_board.cells[1][1] ==  active_board.cells[1][2]) && active_board.cells[1][1] != " " && active_board.cells[1][0] != " " && active_board.cells[1][2] != " " )
+    elsif ((active_board.cells[1][0] == active_board.cells[1][1]) && (active_board.cells[1][0] == active_board.cells[1][2]) && (active_board.cells[1][1] ==  active_board.cells[1][2]) && active_board.cells[1][1] != ' ' && active_board.cells[1][0] != ' ' && active_board.cells[1][2] != ' ')
       active_board.display_board_game
       game_over
-    elsif (( active_board.cells[0][0] ==  active_board.cells[0][1]) && ( active_board.cells[0][0] ==  active_board.cells[0][2]) && ( active_board.cells[0][1] ==  active_board.cells[0][2]) && active_board.cells[0][1] != " " && active_board.cells[0][0] != " " && active_board.cells[0][2] != " " )
+    elsif ((active_board.cells[0][0] == active_board.cells[0][1]) && (active_board.cells[0][0] == active_board.cells[0][2]) && (active_board.cells[0][1] == active_board.cells[0][2]) && active_board.cells[0][1] != ' ' && active_board.cells[0][0] != ' ' && active_board.cells[0][2] != ' ')
       active_board.display_board_game
       game_over
-    elsif (( active_board.cells[2][0] ==  active_board.cells[1][0]) && ( active_board.cells[2][0] ==  active_board.cells[0][0]) && ( active_board.cells[1][0] ==  active_board.cells[0][0]) && active_board.cells[2][0] != " " && active_board.cells[1][0] != " " && active_board.cells[0][0] != " " )
+    elsif ((active_board.cells[2][0] == active_board.cells[1][0]) && (active_board.cells[2][0] == active_board.cells[0][0]) && ( active_board.cells[1][0] ==  active_board.cells[0][0]) && active_board.cells[2][0] != ' ' && active_board.cells[1][0] != ' ' && active_board.cells[0][0] != ' ')
       active_board.display_board_game
       game_over
-    elsif (( active_board.cells[2][1] ==  active_board.cells[1][1]) && ( active_board.cells[2][1] ==  active_board.cells[0][1]) && ( active_board.cells[1][1] ==  active_board.cells[0][1]) && active_board.cells[2][1] != " " && active_board.cells[1][1] != " " && active_board.cells[0][1] != " ")
+    elsif ((active_board.cells[2][1] == active_board.cells[1][1]) && (active_board.cells[2][1] == active_board.cells[0][1]) && (active_board.cells[1][1] == active_board.cells[0][1]) && active_board.cells[2][1] != ' ' && active_board.cells[1][1] != ' ' && active_board.cells[0][1] != ' ')
       active_board.display_board_game
       game_over
-    elsif (( active_board.cells[2][2] ==  active_board.cells[1][2]) && ( active_board.cells[2][2] ==  active_board.cells[0][2]) && ( active_board.cells[1][2] ==  active_board.cells[0][2]) && active_board.cells[1][2] != " " && active_board.cells[2][2] != " " && active_board.cells[0][2] != " " )
+    elsif ((active_board.cells[2][2] == active_board.cells[1][2]) && (active_board.cells[2][2] == active_board.cells[0][2]) && (active_board.cells[1][2] == active_board.cells[0][2]) && active_board.cells[1][2] != ' ' && active_board.cells[2][2] != ' ' && active_board.cells[0][2] != ' ')
       active_board.display_board_game
       game_over
-    elsif (( active_board.cells[2][0] ==  active_board.cells[1][1]) && ( active_board.cells[2][0] ==  active_board.cells[0][2]) && ( active_board.cells[1][1] ==  active_board.cells[0][2]) && active_board.cells[1][1] != " " && active_board.cells[2][0] != " " && active_board.cells[0][2] != " " )
+    elsif ((active_board.cells[2][0] == active_board.cells[1][1]) && (active_board.cells[2][0] == active_board.cells[0][2]) && (active_board.cells[1][1] == active_board.cells[0][2]) && active_board.cells[1][1] != ' ' && active_board.cells[2][0] != ' ' && active_board.cells[0][2] != ' ')
       active_board.display_board_game
       game_over
-    elsif (( active_board.cells[0][0] =  active_board.cells[1][1]) && ( active_board.cells[0][0] ==  active_board.cells[2][2]) && ( active_board.cells[1][1] ==  active_board.cells[2][2]) && active_board.cells[1][1] != " " && active_board.cells[0][0] != " "  && active_board.cells[2][2] != " ")
+    elsif ((active_board.cells[0][0] = active_board.cells[1][1]) && (active_board.cells[0][0] == active_board.cells[2][2]) && ( active_board.cells[1][1] == active_board.cells[2][2]) && active_board.cells[1][1] != ' ' && active_board.cells[0][0] != ' '  && active_board.cells[2][2] != ' ')
       active_board.display_board_game
       game_over
     end
   end
+
   # this method displays a message if there is a winner
   def game_over
-
     puts "GAME OVER! #{$current_turn.name} wins!"
     gets
     0
   end
 end
+
 # those lines are for calling the methods and runs the code in terminal
 play = Game.new
 play.players_info
@@ -247,4 +249,5 @@ play.play_game
 # rubocop:enable Metrics/AbcSize
 # rubocop:enable Style/ParenthesesAroundCondition
 # rubocop:enable Style/GlobalVars
-# rubocop:disable Style/NumericPredicate
+# rubocop:enable Style/NumericPredicate
+# rubocop:enable Style/RedundantInterpolation
