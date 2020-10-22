@@ -219,10 +219,7 @@ class Game
   # this method check all the possible matches to win the game every time a player input a number
   # rubocop:disable Metrics/MethodLength
   def check_winner
-    if (active_board.cells[2][0] == active_board.cells[2][1])
-      active_board.display_board_game
-      game_over
-    end
+    
   end
   # rubocop:enable Metrics/MethodLength
 
