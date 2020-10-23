@@ -202,11 +202,11 @@ class Game
 
   # this method check if player_1 or player_2 is typing
   def check_player_turns
-    if $player_1.turn == true
-      $current_turn = $player_1
-    else
-      $current_turn = $player_2
-    end
+    $current_turn = if $player_1 == true
+                      $player_1
+                    else
+                      $player_2
+                    end
   end
 
   # this method check all the possible matches to win the game every time a player input a number
