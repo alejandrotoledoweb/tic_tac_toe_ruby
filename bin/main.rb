@@ -111,10 +111,6 @@ while reset
       move1 = gets.chomp
       puts "your move is #{move1}"
       sleep(0.75)
-      if i == 3
-        puts 'this move is a draw'
-      else
-        i += 1
       end
       player1.turn = game.get_move(move1, player1.symbol)
       player2.turn = false
