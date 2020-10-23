@@ -3,8 +3,6 @@
 # rubocop:disable Style/RedundantSelf
 # rubocop:disable Metrics/AbcSize
 # rubocop:disable Style/GlobalVars
-# rubocop:disable Style/NumericPredicate
-# rubocop:disable Style/RedundantInterpolation
 # rubocop:disable Lint/RedundantCopDisableDirective
 # rubocop:disable Style/ConditionalAssignment
 # rubocop:disable Style/WhileUntilDo
@@ -85,55 +83,55 @@ class Board
     case $chosen_move
     when 1
       if @cells[2][0] == ' '
-        @cells[2][0] = "#{$current_turn.symbol}"
+        @cells[2][0] = $current_turn.symbol.to_s
       else
         0
       end
     when 2
       if @cells[2][1] == ' '
-        @cells[2][1] = "#{$current_turn.symbol}"
+        @cells[2][1] = $current_turn.symbol.to_s
       else
         0
       end
     when 3
       if @cells[2][2] == ' '
-        @cells[2][2] = "#{$current_turn.symbol}"
+        @cells[2][2] = $current_turn.symbol.to_s
       else
         0
       end
     when 4
       if @cells[1][0] == ' '
-        @cells[1][0] = "#{$current_turn.symbol}"
+        @cells[1][0] = $current_turn.symbol.to_s
       else
         0
       end
     when 5
       if @cells[1][1] == ' '
-        @cells[1][1] = "#{$current_turn.symbol}"
+        @cells[1][1] = $current_turn.symbol.to_s
       else
         0
       end
     when 6
       if @cells[1][2] == ' '
-        @cells[1][2] = "#{$current_turn.symbol}"
+        @cells[1][2] = $current_turn.symbol.to_s
       else
         0
       end
     when 7
       if @cells[0][0] == ' '
-        @cells[0][0] = "#{$current_turn.symbol}"
+        @cells[0][0] = $current_turn.symbol.to_s
       else
         0
       end
     when 8
       if @cells[0][1] == ' '
-        @cells[0][1] = "#{$current_turn.symbol}"
+        @cells[0][1] = $current_turn.symbol.to_s
       else
         0
       end
     when 9
       if @cells[0][2] == ' '
-        @cells[0][2] = "#{$current_turn.symbol}"
+        @cells[0][2] = $current_turn.symbol.to_s
       else
         0
       end
@@ -238,8 +236,6 @@ play.play_game
 # rubocop:enable Style/RedundantSelf
 # rubocop:enable Metrics/AbcSize
 # rubocop:enable Style/GlobalVars
-# rubocop:enable Style/NumericPredicate
-# rubocop:enable Style/RedundantInterpolation
 # rubocop:enable Lint/RedundantCopDisableDirective
 # rubocop:enable Style/ConditionalAssignment
 # rubocop:enable Style/WhileUntilDo
