@@ -5,7 +5,6 @@
 # rubocop:disable Style/GlobalVars
 # rubocop:disable Lint/RedundantCopDisableDirective
 # rubocop:disable Style/ConditionalAssignment
-# rubocop:disable Style/WhileUntilDo
 # rubocop:disable Lint/RedundantCopDisableDirective
 
 # - collect the players info
@@ -171,7 +170,7 @@ class Game
   # rubocop:disable Metrics/MethodLength
   def play_game
     i = 0
-    while i < 9 do
+    while i < 9
       @active_board.display_board_game
       check_player_turns
       puts "#{$current_turn.name}, choose available spot (number) to play"
@@ -194,9 +193,9 @@ class Game
 
       i += 1
       puts 'the next move is a draw' if i == 7
-      sleep(1.5)
+      sleep(1.0)
       puts 'THE WINNER IS PLAYER 1' if i == 8
-      sleep(1.5)
+      sleep(1.0)
     end
     active_board.display_board_game
     puts 'this ended as a draw' if i == 9
@@ -238,5 +237,4 @@ play.play_game
 # rubocop:enable Style/GlobalVars
 # rubocop:enable Lint/RedundantCopDisableDirective
 # rubocop:enable Style/ConditionalAssignment
-# rubocop:enable Style/WhileUntilDo
 # rubocop:enable Lint/RedundantCopDisableDirective
