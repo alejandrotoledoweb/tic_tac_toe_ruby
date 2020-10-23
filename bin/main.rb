@@ -1,8 +1,7 @@
-# rubocop:disable Metrics/CyclomaticComplexity
-# rubocop:disable Metrics/PerceivedComplexity
 # rubocop:disable Style/RedundantSelf
 # rubocop:disable Metrics/AbcSize
 # rubocop:disable Style/GlobalVars
+# rubocop:disable Style/ConditionalAssignment
 # rubocop:disable Lint/RedundantCopDisableDirective
 
 # - collect the players info
@@ -75,66 +74,33 @@ class Board
   end
   # rubocop:enableMetrics/MethodLength
 
-  # rubocop:disable Metrics/MethodLength
+  # rubocop:disable Metrics/PerceivedComplexity
+  # rubocop:disable Metrics/CyclomaticComplexity
   def choose_spot
     case $chosen_move
     when 1
-      if @cells[2][0] == ' '
-        @cells[2][0] = $current_turn.symbol.to_s
-      else
-        '/'
-      end
-    when 2
-      if @cells[2][1] == ' '
-        @cells[2][1] = $current_turn.symbol.to_s
-      else
-        '/'
-      end
+      @cells[2][0] == ' ' ? @cells[2][0] = $current_turn.symbol.to_s : '/'
+    when 2 
+      @cells[2][1] == ' ' ? @cells[2][1] = $current_turn.symbol.to_s : '/'
     when 3
-      if @cells[2][2] == ' '
-        @cells[2][2] = $current_turn.symbol.to_s
-      else
-        '/'
-      end
+      @cells[2][2] == ' ' ? @cells[2][2] = $current_turn.symbol.to_s : '/'
     when 4
-      if @cells[1][0] == ' '
-        @cells[1][0] = $current_turn.symbol.to_s
-      else
-        '/'
-      end
-    when 5
-      if @cells[1][1] == ' '
-        @cells[1][1] = $current_turn.symbol.to_s
-      else
-        '/'
-      end
+      @cells[1][0] == ' ' ? @cells[1][0] = $current_turn.symbol.to_s : '/'
+    when 5 
+      @cells[1][1] == ' ' ? @cells[1][1] = $current_turn.symbol.to_s : '/'
     when 6
-      if @cells[1][2] == ' '
-        @cells[1][2] = $current_turn.symbol.to_s
-      else
-        '/'
-      end
-    when 7
-      if @cells[0][0] == ' '
-        @cells[0][0] = $current_turn.symbol.to_s
-      else
-        '/'
-      end
+      @cells[1][2] == ' ' ? @cells[1][2] = $current_turn.symbol.to_s : '/'
+    when 7 
+      @cells[0][0] == ' ' ? @cells[0][0] = $current_turn.symbol.to_s : '/'
     when 8
-      if @cells[0][1] == ' '
-        @cells[0][1] = $current_turn.symbol.to_s
-      else
-        '/'
-      end
+      @cells[0][1] == ' ' ? @cells[0][1] = $current_turn.symbol.to_s : '/'
     when 9
-      if @cells[0][2] == ' '
-        @cells[0][2] = $current_turn.symbol.to_s
-      else
-        '/'
-      end
+      @cells[0][2] == ' ' ? @cells[0][2] = $current_turn.symbol.to_s : '/'
     end
   end
 end
+# rubocop:enable Metrics/PerceivedComplexity
+# rubocop:enable Metrics/CyclomaticComplexity
 
 # This is the Game Class
 class Game
@@ -167,53 +133,61 @@ class Game
 
   # rubocop:disable Metrics/MethodLength
   def play_game
-    i = 0
-    while i < 9
+    $i = 0
+    while $i < 9
       @active_board.display_board_game
       check_player_turns
       puts "#{$current_turn.name}, choose available spot (number) to play"
       $chosen_move = gets.chomp.to_i
       puts "Your move is #{$chosen_move}"
-      unless (1..9).include?($chosen_move)
-        puts 'You have to choose a number between 1 - 9'
-        sleep(0.7)
-        redo
-      end
+      it_include unless (1..9).include?($chosen_move)
       if active_board.choose_spot == '/'
         puts 'You have to choose another spot'
         sleep(0.7)
         redo
       end
       @active_board.choose_spot
-      $player_1.turn = !$player_1.turn
-      $player_2.turn = !$player_2.turn
+      change_player
       break if self.check_winner == '/'
 
-      i += 1
-      puts 'the next move is a draw' if i == 7
-      sleep(1.0)
-      puts 'THE WINNER IS PLAYER 1' if i == 8
+      $i += 1
+      draw_move
+      puts 'THE WINNER IS PLAYER 1' if $i == 8
       sleep(1.0)
     end
     active_board.display_board_game
-    puts 'this ended as a draw' if i == 9
+    puts 'this ended as a draw' if $i == 9
   end
   # rubocop:enable Metrics/MethodLength
 
   # this method check if player_1 or player_2 is typing
   def check_player_turns
-    $current_turn = if $player_1 == true
-                      $player_1
-                    else
-                      $player_2
-                    end
+    if $player_1.turn == true
+      $current_turn = $player_1
+    else
+      $current_turn = $player_2
+    end
+  end
+
+  def it_include
+    puts 'You have to choose a number between 1 - 9'
+    sleep(0.7)
+  end
+
+  def change_player
+    $player_1.turn = !$player_1.turn
+    $player_2.turn = !$player_2.turn
+  end
+
+  def draw_move
+    puts 'the next move is a draw' if $i == 7
+    sleep(1.0)
   end
 
   # this method check all the possible matches to win the game every time a player input a number
-  # rubocop:disable Metrics/MethodLength
   def check_winner
+    puts ' '
   end
-  # rubocop:enable Metrics/MethodLength
 
   # this method displays a message if there is a winner
   def game_over
@@ -228,9 +202,8 @@ play = Game.new
 play.players_info
 play.play_game
 
-# rubocop:enable Metrics/CyclomaticComplexity
-# rubocop:enable Metrics/PerceivedComplexity
 # rubocop:enable Style/RedundantSelf
 # rubocop:enable Metrics/AbcSize
 # rubocop:enable Style/GlobalVars
+# rubocop:enable Style/ConditionalAssignment
 # rubocop:enable Lint/RedundantCopDisableDirective
