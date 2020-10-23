@@ -85,55 +85,55 @@ class Board
       if @cells[2][0] == ' '
         @cells[2][0] = $current_turn.symbol.to_s
       else
-        0
+        '/'
       end
     when 2
       if @cells[2][1] == ' '
         @cells[2][1] = $current_turn.symbol.to_s
       else
-        0
+        '/'
       end
     when 3
       if @cells[2][2] == ' '
         @cells[2][2] = $current_turn.symbol.to_s
       else
-        0
+        '/'
       end
     when 4
       if @cells[1][0] == ' '
         @cells[1][0] = $current_turn.symbol.to_s
       else
-        0
+        '/'
       end
     when 5
       if @cells[1][1] == ' '
         @cells[1][1] = $current_turn.symbol.to_s
       else
-        0
+        '/'
       end
     when 6
       if @cells[1][2] == ' '
         @cells[1][2] = $current_turn.symbol.to_s
       else
-        0
+        '/'
       end
     when 7
       if @cells[0][0] == ' '
         @cells[0][0] = $current_turn.symbol.to_s
       else
-        0
+        '/'
       end
     when 8
       if @cells[0][1] == ' '
         @cells[0][1] = $current_turn.symbol.to_s
       else
-        0
+        '/'
       end
     when 9
       if @cells[0][2] == ' '
         @cells[0][2] = $current_turn.symbol.to_s
       else
-        0
+        '/'
       end
     end
   end
@@ -182,15 +182,15 @@ class Game
         sleep(0.7)
         redo
       end
-      if active_board.choose_spot == 0
+      if active_board.choose_spot == '/'
         puts 'You have to choose another spot'
         sleep(0.7)
         redo
       end
-      active_board.choose_spot
+      @active_board.choose_spot
       $player_1.turn = !$player_1.turn
       $player_2.turn = !$player_2.turn
-      break if self.check_winner == 0
+      break if self.check_winner == '/'
 
       i += 1
       puts 'the next move is a draw' if i == 7
