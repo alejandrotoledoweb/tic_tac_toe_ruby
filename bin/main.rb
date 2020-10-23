@@ -3,7 +3,6 @@
 # rubocop:disable Style/RedundantSelf
 # rubocop:disable Metrics/AbcSize
 # rubocop:disable Style/GlobalVars
-# rubocop:disable Lint/RedundantCopDisableDirective
 # rubocop:disable Style/ConditionalAssignment
 # rubocop:disable Lint/RedundantCopDisableDirective
 
@@ -235,6 +234,5 @@ play.play_game
 # rubocop:enable Style/RedundantSelf
 # rubocop:enable Metrics/AbcSize
 # rubocop:enable Style/GlobalVars
-# rubocop:enable Lint/RedundantCopDisableDirective
 # rubocop:enable Style/ConditionalAssignment
 # rubocop:enable Lint/RedundantCopDisableDirective
