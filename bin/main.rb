@@ -3,7 +3,6 @@
 # rubocop:disable Style/RedundantSelf
 # rubocop:disable Metrics/AbcSize
 # rubocop:disable Style/GlobalVars
-# rubocop:disable Style/ConditionalAssignment
 # rubocop:disable Lint/RedundantCopDisableDirective
 
 # - collect the players info
@@ -234,5 +233,4 @@ play.play_game
 # rubocop:enable Style/RedundantSelf
 # rubocop:enable Metrics/AbcSize
 # rubocop:enable Style/GlobalVars
-# rubocop:enable Style/ConditionalAssignment
 # rubocop:enable Lint/RedundantCopDisableDirective
