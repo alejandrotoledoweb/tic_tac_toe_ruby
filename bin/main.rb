@@ -1,4 +1,3 @@
-# rubocop:disable Style/ConditionalAssignment
 # rubocop:disable Metrics/CyclomaticComplexity
 # rubocop:disable Metrics/PerceivedComplexity
 # rubocop:disable Metrics/AbcSize
@@ -50,7 +49,7 @@ class Game
     end
   end
 
-  def winner
+  def winner_check
     @win1 = cells[0] == cells[1] && cells[1] == cells[2]
     @win2 = cells[3] == cells[4] && cells[4] == cells[5]
     @win3 = cells[6] == cells[7] && cells[7] == cells[8]
@@ -63,7 +62,7 @@ class Game
     @winner = true if @win1 || @win2 || @win3 || @win4 || @win5 || @win6 || @win7 || @win8
   end
 
-  def draw
+  def draw_check
     @draw = true if cells.all? { |space| %w[X O].include? space }
   end
 end
@@ -109,6 +108,8 @@ while reset
     while player1.turn == false
       puts "#{player1.name.upcase} is your turn, choose a spot (number)"
       move1 = gets.chomp
+      puts "your move is #{move1}"
+      sleep(0.75)
       player1.turn = game.get_move(move1, player1.symbol)
       player2.turn = false
     end
@@ -116,13 +117,13 @@ while reset
     puts "#{player1.name} has selected #{move1}"
     display_board_game(game.cells)
 
-    if game.winner
+    if game.winner_check
       puts "#{player1.name} is the winner"
       @game_on = false
       break
     end
 
-    if game.draw
+    if game.draw_check
       puts 'It ended as a draw'
       game.game_on = false
       break
@@ -131,7 +132,8 @@ while reset
     while player2.turn == false
       puts "#{player2.name} is your turn, choose a spot (number)"
       move2 = gets.chomp
-      sleep(0.8)
+      puts "your move is #{move2}"
+      sleep(0.75)
       player2.turn = game.get_move(move2, player2.symbol)
       player1.turn = false
     end
@@ -139,13 +141,13 @@ while reset
     puts "#{player2.name} has selected #{move2}"
     display_board_game(game.cells)
 
-    if game.winner
+    if game.winner_check
       puts "#{player2.name} is the winner"
       @game_on = false
       break
     end
 
-    next unless game.draw
+    next unless game.draw_check
 
     puts "It's a draw"
     game.game_on = false
@@ -163,7 +165,6 @@ while reset
   end
 end
 
-# rubocop:enable Style/ConditionalAssignment
 # rubocop:enable Metrics/CyclomaticComplexity
 # rubocop:enable Metrics/PerceivedComplexity
 # rubocop:enable Metrics/AbcSize
