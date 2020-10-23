@@ -1,7 +1,7 @@
-# rubocop:disable Style/RedundantSelf
-# rubocop:disable Style/GlobalVars
 # rubocop:disable Style/ConditionalAssignment
-# rubocop:disable Lint/RedundantCopDisableDirective
+# rubocop:disable Metrics/CyclomaticComplexity
+# rubocop:disable Metrics/PerceivedComplexity
+# rubocop:disable Metrics/AbcSize
 
 # - collect the players info
 # - show the board in the terminal all the time
@@ -26,24 +26,9 @@ class FirstSetup
   def initialize(name, symbol)
     @name = name
     @symbol = symbol
-    @turn = turn
-  end
-
-  def first_turn
-    puts "#{$player_1.name} you are first" if $player_1.turn == true
+    @turn = false
   end
 end
-
-def display_board_game(arr)
-  system 'clear'
-  puts "  |  #{arr[6]}  |  #{arr[7]}  |  #{arr[8]}  |"
-  puts '  |     |     |     |'
-  puts "  |  #{arr[3]}  |  #{arr[4]}  |  #{arr[5]}  |"
-  puts '  |     |     |     |'
-  puts "  |  #{arr[0]}  |  #{arr[1]}  |  #{arr[2]}  |"
-  puts '  |     |     |     |'
-end
-
 
 # This is the Game Class
 class Game
@@ -84,6 +69,16 @@ class Game
   end
 end
 
+def display_board_game(arr)
+  system 'clear'
+  puts "  |  #{arr[6]}  |  #{arr[7]}  |  #{arr[8]}  |"
+  puts '  |     |     |     |'
+  puts "  |  #{arr[3]}  |  #{arr[4]}  |  #{arr[5]}  |"
+  puts '  |     |     |     |'
+  puts "  |  #{arr[0]}  |  #{arr[1]}  |  #{arr[2]}  |"
+  puts '  |     |     |     |'
+end
+
 reset = true
 
 while reset
@@ -94,7 +89,7 @@ while reset
   while p1_name
     puts 'Player 1 type your name. '
     player1 = FirstSetup.new(gets.chomp, 'X')
-    puts "Welcome #{player1.name.upcase}, you are the first player, and you symbol is '#{player1.symbol}'"
+    puts "Welcome #{player1.name.upcase!}, you are the first player, and you symbol is '#{player1.symbol}'"
     sleep(0.8)
     p1_name = false
   end
@@ -102,7 +97,7 @@ while reset
   while p2_name
     puts 'Player 2 type your name. '
     player2 = FirstSetup.new(gets.chomp, 'O')
-    puts "Welcome #{player2.name.upcase}, you are the second player, and you symbol is '#{player2.symbol}'"
+    puts "Welcome #{player2.name.upcase!}, you are the second player, and you symbol is '#{player2.symbol}'"
     sleep(0.8)
     p2_name = false
   end
@@ -113,9 +108,9 @@ while reset
     display_board_game(game.cells)
 
     while player1.turn == false
-      puts "#{$player1.name.upcase} is your turn, choose a spot (number)"
+      puts "#{player1.name.upcase} is your turn, choose a spot (number)"
       move1 = gets.chomp
-      player1.turn = game.get_move(move1, p1.mark)
+      player1.turn = game.get_move(move1, player1.symbol)
       player2.turn = false
     end
 
@@ -133,39 +128,44 @@ while reset
       game.game_on = false
       break
     end
+
+    while player2.turn == false
+      puts "#{player2.name} is your turn, choose a spot (number)"
+      move2 = gets.chomp
+      sleep(0.8)
+      player2.turn = game.get_move(move2, player2.symbol)
+      player1.turn = false
+    end
+
+    puts "#{player2.name} has selected #{move2}"
+    display_board_game(game.cells)
+
+    if game.winner
+      puts "#{player2.name} is the winner"
+      @game_on = false
+      break
+    end
+
+    next unless game.draw
+
+    puts "It's a draw"
+    game.game_on = false
     next
+  end
+
+  puts "For PLAY AGAIN type 'yes' to END the game type any other key"
+  p_again = gets.chomp
+  if p_again == 'yes'
+    reset = true
+    game = Game.new
+  else
+    reset = false
+    puts 'GAME OVER'
   end
 end
 
 
-
-
-
-
-game = Game.new
-
-while game.game_on
-  display_board_game(game.cells)
-
-
-
-  check_player_turns
-  puts "#{$current_turn.name}, choose available spot (number) to play"
-  input_spot = choose_spot.new
-  input_spot = gets.chomp.to_i
-  puts "Your move is #{$chosen_move}"
-  
-  draw_move
-  winner_next_move
-end
-active_board.display_board_game
-active_board.display_board_game_1
-puts 'this ended as a draw' if i == 9
-
-
-
-
-# rubocop:enable Style/RedundantSelf
-# rubocop:enable Style/GlobalVars
 # rubocop:enable Style/ConditionalAssignment
-# rubocop:enable Lint/RedundantCopDisableDirective
+# rubocop:enable Metrics/CyclomaticComplexity
+# rubocop:enable Metrics/PerceivedComplexity
+# rubocop:enable Metrics/AbcSize
