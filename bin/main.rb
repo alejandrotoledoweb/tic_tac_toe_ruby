@@ -17,6 +17,8 @@
 # - check if that move was a winning or draw move,update the board with the player_2's symbol
 # - display if there is a winner or is a draw
 # - end of the game
+
+
 class FirstSetup
   attr_reader :name, :symbol
   attr_accessor :turn
@@ -46,34 +48,13 @@ def coin_flip
   end
 end
 
-
-# This is Class Board
-class Board
-  attr_accessor :cells
-
-  @cells = []
-
-  def initialize
-    @cells = [[' ', ' ', ' '], [' ', ' ', ' '], [' ', ' ', ' ']]
-  end
-
-  def choose_spot
-    case $chosen_move
-    when 1
-      @cells[2][0] == ' ' ? @cells[2][0] = $current_turn.symbol.to_s : '/'
-    when 2
-      @cells[2][1] == ' ' ? @cells[2][1] = $current_turn.symbol.to_s : '/'
-    end
-  end
-end
-
 def display_board_game(arr)
   system 'clear'
-  puts "  |  #{arr[0][0]}  |  #{arr[0][1]}  |  #{arr[0][2]}  |"
+  puts "  |  #{arr[6]}  |  #{arr[7]}  |  #{arr[8]}  |"
   puts '  |  7  |  8  |  9  |'
-  puts "  |  #{arr[1][0]}  |  #{arr[1][1]}  |  #{arr[1][2]}  |"
+  puts "  |  #{arr[3]}  |  #{arr[4]}  |  #{arr[5]}  |"
   puts '  |  4  |  5  |  6  |'
-  puts "  |  #{arr[2][0]}  |  #{arr[2][1]}  |  #{arr[2][2]}  |"
+  puts "  |  #{arr[0]}  |  #{arr[1]}  |  #{arr[2]}  |"
   puts '  |  1  |  2  |  3  |'
 end
 
@@ -88,56 +69,50 @@ end
 
 # This is the Game Class
 class Game
-  attr_reader :cells, :winner, :draw
   attr_accessor :game_on
+  attr_reader :cells, :winner, :draw
 
   def initialize
     @game_on = true
     @winner = false
     @draw = false
-    @cells = [[' ', ' ', ' '], [' ', ' ', ' '], [' ', ' ', ' ']]
+    @cells = %w[1 2 3 4 5 6 7 8 9]
   end
 
-  def it_include
-    puts 'You have to choose a number between 1 - 9'
-    sleep(0.7)
+  def get_move(move, symbol)
+    if cells.any? { |n| move == n } && move.to_i != 0
+      cells[move.to_i - 1] = symbol
+      true
+    else
+      false
+    end
   end
 
-  def change_player
-    $player_1.turn = !$player_1.turn
-    $player_2.turn = !$player_2.turn
+  def winner
+    @win1 = cells[0] == cells[1] && cells[1] == cells[2]
+    @win2 = cells[3] == cells[4] && cells[4] == cells[5]
+    @win3 = cells[6] == cells[7] && cells[7] == cells[8]
+    @win4 = cells[0] == cells[4] && cells[4] == cells[8]
+    @win5 = cells[2] == cells[4] && cells[4] == cells[6]
+    @win6 = cells[0] == cells[3] && cells[3] == cells[6]
+    @win7 = cells[1] == cells[4] && cells[4] == cells[7]
+    @win8 = cells[2] == cells[5] && cells[5] == cells[8]
+
+    @winner = true if @win1 || @win2 || @win3 || @win4 || @win5 || @win6 || @win7 || @win8
   end
 
-  def draw_move
-    puts 'the next move is a draw' if $i == 7
-    sleep(1.0)
-  end
-
-  def winner_next_move
-    puts 'THE WINNER IS PLAYER 1' if $i == 8
-    sleep(1.0)
-  end
-
-  # this method check all the possible matches to win the game every time a player input a number
-  def check_winner
-    puts ' '
-  end
-
-  # this method displays a message if there is a winner
-  def game_over
-    puts "GAME OVER! #{$current_turn.name} wins!"
-    gets
-    0
+  def draw
+    @draw = true if cells.all? { |space| %w[X O].include? space }
   end
 end
 
 puts 'Welcome to our tic tac toe game!'
 puts 'Player 1 type your name, type enter and enter you symbol: '
-$player_1 = FirstSetup.new(gets.chomp, gets.chomp)
-puts "Welcome #{$player_1.name}, you are the first player, and you symbol is '#{$player_1.symbol}'"
+player_1 = FirstSetup.new(gets.chomp, 'X')
+puts "Welcome #{player_1.name}.upercase, you are the first player, and you symbol is '#{player_1.symbol}'"
 puts 'Player 2 type your name, type enter and type symbol: '
-$player_2 = FirstSetup.new(gets.chomp, gets.chomp)
-puts "Welcome #{$player_2.name}, you are the second player, and you symbol is '#{$player_2.symbol}'"
+player_2 = FirstSetup.new(gets.chomp, 'O')
+puts "Welcome #{player_2.name}, you are the second player, and you symbol is '#{player_2.symbol}'"
 puts "Let's decide who is going first, let's flip a coin. press enter"
 puts "#{$player_1.name}, you're HEADS. #{$player_2.name}, you're TAILS."
 gets
@@ -153,20 +128,10 @@ while game.game_on
   display_board_game(game.cells)
   check_player_turns
   puts "#{$current_turn.name}, choose available spot (number) to play"
-  $chosen_move = gets.chomp.to_i
+  input_spot = choose_spot.new
+  input_spot = gets.chomp.to_i
   puts "Your move is #{$chosen_move}"
-  it_include unless (1..9).include?($chosen_move)
-
-  if active_board.choose_spot == '/'
-    puts 'You have to choose another spot'
-    sleep(0.7)
-    redo
-  end
-  @active_board.choose_spot
-  change_player
-  break if self.check_winner == '/'
-
-  i += 1
+  
   draw_move
   winner_next_move
 end
