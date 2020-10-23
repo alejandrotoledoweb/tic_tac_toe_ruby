@@ -219,7 +219,7 @@ class Game
     elsif ((active_board.cells[2][1] == active_board.cells[1][1]) && (active_board.cells[2][1] == active_board.cells[0][1]) && (active_board.cells[1][1] == active_board.cells[0][1]) && active_board.cells[2][1] != ' ' && active_board.cells[1][1] != ' ' && active_board.cells[0][1] != ' ')
       active_board.display_board_game
       game_over
-    elsif ((active_board.cells[2][2] == active_board.cells[1][2]) && (active_board.cells[2][2] == active_board.cells[0][2]) && (active_board.cells[1][2] == active_board.cells[0][2]) && active_board.cells[1][2] != ' ' && active_board.cells[2][2] != ' ' && active_board.cells[0][2] != ' ')
+    elsif ((active_board.cells[2][2] == active_board.cells[1][2]) && (active_board.cells[2][2] == active_board.cells[0][2]) && (active_board.cells[1][2] == active_board.cells[0][2]) && acgit@github.com:alejandrotoledoweb/tic_tac_toe_ruby.gittive_board.cells[1][2] != ' ' && active_board.cells[2][2] != ' ' && active_board.cells[0][2] != ' ')
       active_board.display_board_game
       game_over
     elsif ((active_board.cells[2][0] == active_board.cells[1][1]) && (active_board.cells[2][0] == active_board.cells[0][2]) && (active_board.cells[1][1] == active_board.cells[0][2]) && active_board.cells[1][1] != ' ' && active_board.cells[2][0] != ' ' && active_board.cells[0][2] != ' ')
