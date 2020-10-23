@@ -34,38 +34,16 @@ class FirstSetup
   end
 end
 
-# This is Coin Section
-def coin_flip
-  coin = rand(2)
-  if coin == 1
-    puts 'we get HEADS UP'
-    sleep(1.0)
-    true
-  else
-    puts 'we get TAILS'
-    sleep(1.0)
-    false
-  end
-end
-
 def display_board_game(arr)
   system 'clear'
   puts "  |  #{arr[6]}  |  #{arr[7]}  |  #{arr[8]}  |"
-  puts '  |  7  |  8  |  9  |'
+  puts '  |     |     |     |'
   puts "  |  #{arr[3]}  |  #{arr[4]}  |  #{arr[5]}  |"
-  puts '  |  4  |  5  |  6  |'
+  puts '  |     |     |     |'
   puts "  |  #{arr[0]}  |  #{arr[1]}  |  #{arr[2]}  |"
-  puts '  |  1  |  2  |  3  |'
+  puts '  |     |     |     |'
 end
 
-# this method check if player_1 or player_2 is typing
-def check_player_turns
-  if $player_1.turn == true
-    $current_turn = $player_1
-  else
-    $current_turn = $player_2
-  end
-end
 
 # This is the Game Class
 class Game
@@ -106,26 +84,71 @@ class Game
   end
 end
 
-puts 'Welcome to our tic tac toe game!'
-puts 'Player 1 type your name, type enter and enter you symbol: '
-player_1 = FirstSetup.new(gets.chomp, 'X')
-puts "Welcome #{player_1.name}.upercase, you are the first player, and you symbol is '#{player_1.symbol}'"
-puts 'Player 2 type your name, type enter and type symbol: '
-player_2 = FirstSetup.new(gets.chomp, 'O')
-puts "Welcome #{player_2.name}, you are the second player, and you symbol is '#{player_2.symbol}'"
-puts "Let's decide who is going first, let's flip a coin. press enter"
-puts "#{$player_1.name}, you're HEADS. #{$player_2.name}, you're TAILS."
-gets
-if coin_flip == true
-  puts "#{$player_1.name} is your turn"
-else
-  puts "#{$player_2.name} is your turn"
+reset = true
+
+while reset
+  puts 'Welcome to our tic tac toe game!'
+  p1_name = true
+  p2_name = true
+
+  while p1_name
+    puts 'Player 1 type your name. '
+    player1 = FirstSetup.new(gets.chomp, 'X')
+    puts "Welcome #{player1.name.upcase}, you are the first player, and you symbol is '#{player1.symbol}'"
+    sleep(0.8)
+    p1_name = false
+  end
+
+  while p2_name
+    puts 'Player 2 type your name. '
+    player2 = FirstSetup.new(gets.chomp, 'O')
+    puts "Welcome #{player2.name.upcase}, you are the second player, and you symbol is '#{player2.symbol}'"
+    sleep(0.8)
+    p2_name = false
+  end
+
+  game = Game.new
+
+  while game.game_on
+    display_board_game(game.cells)
+
+    while player1.turn == false
+      puts "#{$player1.name.upcase} is your turn, choose a spot (number)"
+      move1 = gets.chomp
+      player1.turn = game.get_move(move1, p1.mark)
+      player2.turn = false
+    end
+
+    puts "#{player1.name} has selected #{move1}"
+    display_board_game(game.cells)
+
+    if game.winner
+      puts "#{player1.name} is the winner"
+      @game_on = false
+      break
+    end
+
+    if game.draw
+      puts 'It ended as a draw'
+      game.game_on = false
+      break
+    end
+    next
+  end
 end
+
+
+
+
+
 
 game = Game.new
 
 while game.game_on
   display_board_game(game.cells)
+
+
+
   check_player_turns
   puts "#{$current_turn.name}, choose available spot (number) to play"
   input_spot = choose_spot.new
