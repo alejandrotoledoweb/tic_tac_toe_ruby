@@ -80,17 +80,17 @@ class Board
     case $chosen_move
     when 1
       @cells[2][0] == ' ' ? @cells[2][0] = $current_turn.symbol.to_s : '/'
-    when 2 
+    when 2
       @cells[2][1] == ' ' ? @cells[2][1] = $current_turn.symbol.to_s : '/'
     when 3
       @cells[2][2] == ' ' ? @cells[2][2] = $current_turn.symbol.to_s : '/'
     when 4
       @cells[1][0] == ' ' ? @cells[1][0] = $current_turn.symbol.to_s : '/'
-    when 5 
+    when 5
       @cells[1][1] == ' ' ? @cells[1][1] = $current_turn.symbol.to_s : '/'
     when 6
       @cells[1][2] == ' ' ? @cells[1][2] = $current_turn.symbol.to_s : '/'
-    when 7 
+    when 7
       @cells[0][0] == ' ' ? @cells[0][0] = $current_turn.symbol.to_s : '/'
     when 8
       @cells[0][1] == ' ' ? @cells[0][1] = $current_turn.symbol.to_s : '/'
@@ -152,8 +152,7 @@ class Game
 
       $i += 1
       draw_move
-      puts 'THE WINNER IS PLAYER 1' if $i == 8
-      sleep(1.0)
+      winner_next_move
     end
     active_board.display_board_game
     puts 'this ended as a draw' if $i == 9
@@ -181,6 +180,11 @@ class Game
 
   def draw_move
     puts 'the next move is a draw' if $i == 7
+    sleep(1.0)
+  end
+
+  def winner_next_move
+    puts 'THE WINNER IS PLAYER 1' if $i == 8
     sleep(1.0)
   end
 
