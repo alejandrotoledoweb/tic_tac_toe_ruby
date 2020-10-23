@@ -111,7 +111,6 @@ while reset
       move1 = gets.chomp
       puts "your move is #{move1}"
       sleep(0.75)
-      end
       player1.turn = game.get_move(move1, player1.symbol)
       player2.turn = false
       i += 1
