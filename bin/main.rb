@@ -1,5 +1,4 @@
 # rubocop:disable Style/RedundantSelf
-# rubocop:disable Metrics/AbcSize
 # rubocop:disable Style/GlobalVars
 # rubocop:disable Style/ConditionalAssignment
 # rubocop:disable Lint/RedundantCopDisableDirective
@@ -34,19 +33,19 @@ class FirstSetup
 end
 
 # This is Coin Section
-class BeginRandom
-  def coin_flip
-    coin = rand(2)
-
-    if coin == 1
-      puts 'we get HEADS UP'
-      true
-    else
-      puts 'we get TAILS'
-      false
-    end
+def coin_flip
+  coin = rand(2)
+  if coin == 1
+    puts 'we get HEADS UP'
+    sleep(1.0)
+    true
+  else
+    puts 'we get TAILS'
+    sleep(1.0)
+    false
   end
 end
+
 
 # This is Class Board
 class Board
@@ -58,114 +57,45 @@ class Board
     @cells = [[' ', ' ', ' '], [' ', ' ', ' '], [' ', ' ', ' ']]
   end
 
-  # rubocop:disable Metrics/MethodLength
-  def display_board_game
-    system 'clear'
-    puts '  |‾‾‾‾‾|‾‾‾‾‾|‾‾‾‾‾|'
-    puts "  |  #{@cells[0][0]}  |  #{@cells[0][1]}  |  #{@cells[0][2]}  |"
-    puts '  |7____|8____|9____|'
-    puts '  |     |     |     |'
-    puts "  |  #{@cells[1][0]}  |  #{@cells[1][1]}  |  #{@cells[1][2]}  |"
-    puts '  |4____|5____|6____|'
-    puts '  |     |     |     |'
-    puts "  |  #{@cells[2][0]}  |  #{@cells[2][1]}  |  #{@cells[2][2]}  |"
-    puts '  |1____|2____|3____|'
-    puts ''
-  end
-  # rubocop:enableMetrics/MethodLength
-
-  # rubocop:disable Metrics/PerceivedComplexity
-  # rubocop:disable Metrics/CyclomaticComplexity
   def choose_spot
     case $chosen_move
     when 1
       @cells[2][0] == ' ' ? @cells[2][0] = $current_turn.symbol.to_s : '/'
     when 2
       @cells[2][1] == ' ' ? @cells[2][1] = $current_turn.symbol.to_s : '/'
-    when 3
-      @cells[2][2] == ' ' ? @cells[2][2] = $current_turn.symbol.to_s : '/'
-    when 4
-      @cells[1][0] == ' ' ? @cells[1][0] = $current_turn.symbol.to_s : '/'
-    when 5
-      @cells[1][1] == ' ' ? @cells[1][1] = $current_turn.symbol.to_s : '/'
-    when 6
-      @cells[1][2] == ' ' ? @cells[1][2] = $current_turn.symbol.to_s : '/'
-    when 7
-      @cells[0][0] == ' ' ? @cells[0][0] = $current_turn.symbol.to_s : '/'
-    when 8
-      @cells[0][1] == ' ' ? @cells[0][1] = $current_turn.symbol.to_s : '/'
-    when 9
-      @cells[0][2] == ' ' ? @cells[0][2] = $current_turn.symbol.to_s : '/'
     end
   end
 end
-# rubocop:enable Metrics/PerceivedComplexity
-# rubocop:enable Metrics/CyclomaticComplexity
+
+def display_board_game(arr)
+  system 'clear'
+  puts "  |  #{arr[0][0]}  |  #{arr[0][1]}  |  #{arr[0][2]}  |"
+  puts '  |  7  |  8  |  9  |'
+  puts "  |  #{arr[1][0]}  |  #{arr[1][1]}  |  #{arr[1][2]}  |"
+  puts '  |  4  |  5  |  6  |'
+  puts "  |  #{arr[2][0]}  |  #{arr[2][1]}  |  #{arr[2][2]}  |"
+  puts '  |  1  |  2  |  3  |'
+end
+
+# this method check if player_1 or player_2 is typing
+def check_player_turns
+  if $player_1.turn == true
+    $current_turn = $player_1
+  else
+    $current_turn = $player_2
+  end
+end
 
 # This is the Game Class
 class Game
-  attr_accessor :active_board
+  attr_reader :cells, :winner, :draw
+  attr_accessor :game_on
 
   def initialize
-    @active_board = Board.new
-  end
-
-  def players_info
-    puts 'Welcome to our tic tac toe game!'
-    puts 'Player 1 type your name, type enter and enter you symbol: '
-    $player_1 = FirstSetup.new(gets.chomp, gets.chomp)
-    puts "Welcome #{$player_1.name}, you are the first player, and you symbol is '#{$player_1.symbol}'"
-    puts 'Player 2 type your name, type enter and type symbol: '
-    $player_2 = FirstSetup.new(gets.chomp, gets.chomp)
-    puts "Welcome #{$player_2.name}, you are the second player, and you symbol is '#{$player_2.symbol}'"
-    puts "Let's decide who is going first, let's flip a coin. press enter"
-    puts "#{$player_1.name}, you're HEADS. #{$player_2.name}, you're TAILS."
-    gets
-    flip = BeginRandom.new
-    $player_1.turn = flip.coin_flip
-    $player_2.turn = !$player_1.turn
-    $player_1.first_turn
-    $player_2.first_turn
-    gets
-  end
-
-  # this method is goin to join all other methods and make the game works
-
-  # rubocop:disable Metrics/MethodLength
-  def play_game
-    $i = 0
-    while $i < 9
-      @active_board.display_board_game
-      check_player_turns
-      puts "#{$current_turn.name}, choose available spot (number) to play"
-      $chosen_move = gets.chomp.to_i
-      puts "Your move is #{$chosen_move}"
-      it_include unless (1..9).include?($chosen_move)
-      if active_board.choose_spot == '/'
-        puts 'You have to choose another spot'
-        sleep(0.7)
-        redo
-      end
-      @active_board.choose_spot
-      change_player
-      break if self.check_winner == '/'
-
-      $i += 1
-      draw_move
-      winner_next_move
-    end
-    active_board.display_board_game
-    puts 'this ended as a draw' if $i == 9
-  end
-  # rubocop:enable Metrics/MethodLength
-
-  # this method check if player_1 or player_2 is typing
-  def check_player_turns
-    if $player_1.turn == true
-      $current_turn = $player_1
-    else
-      $current_turn = $player_2
-    end
+    @game_on = true
+    @winner = false
+    @draw = false
+    @cells = [[' ', ' ', ' '], [' ', ' ', ' '], [' ', ' ', ' ']]
   end
 
   def it_include
@@ -201,13 +131,53 @@ class Game
   end
 end
 
-# those lines are for calling the methods and runs the code in terminal
-play = Game.new
-play.players_info
-play.play_game
+puts 'Welcome to our tic tac toe game!'
+puts 'Player 1 type your name, type enter and enter you symbol: '
+$player_1 = FirstSetup.new(gets.chomp, gets.chomp)
+puts "Welcome #{$player_1.name}, you are the first player, and you symbol is '#{$player_1.symbol}'"
+puts 'Player 2 type your name, type enter and type symbol: '
+$player_2 = FirstSetup.new(gets.chomp, gets.chomp)
+puts "Welcome #{$player_2.name}, you are the second player, and you symbol is '#{$player_2.symbol}'"
+puts "Let's decide who is going first, let's flip a coin. press enter"
+puts "#{$player_1.name}, you're HEADS. #{$player_2.name}, you're TAILS."
+gets
+if coin_flip == true
+  puts "#{$player_1.name} is your turn"
+else
+  puts "#{$player_2.name} is your turn"
+end
+
+game = Game.new
+
+while game.game_on
+  display_board_game(game.cells)
+  check_player_turns
+  puts "#{$current_turn.name}, choose available spot (number) to play"
+  $chosen_move = gets.chomp.to_i
+  puts "Your move is #{$chosen_move}"
+  it_include unless (1..9).include?($chosen_move)
+
+  if active_board.choose_spot == '/'
+    puts 'You have to choose another spot'
+    sleep(0.7)
+    redo
+  end
+  @active_board.choose_spot
+  change_player
+  break if self.check_winner == '/'
+
+  i += 1
+  draw_move
+  winner_next_move
+end
+active_board.display_board_game
+active_board.display_board_game_1
+puts 'this ended as a draw' if i == 9
+
+
+
 
 # rubocop:enable Style/RedundantSelf
-# rubocop:enable Metrics/AbcSize
 # rubocop:enable Style/GlobalVars
 # rubocop:enable Style/ConditionalAssignment
 # rubocop:enable Lint/RedundantCopDisableDirective
