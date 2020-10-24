@@ -8,7 +8,6 @@ while reset
   puts 'Welcome to our tic tac toe game!'
   p1_name = true
   p2_name = true
-  i = 0
 
   while p1_name
     puts 'Player 1 type your name. '
@@ -50,7 +49,6 @@ while reset
       sleep(0.75)
       player1.turn = game.get_move(move1, player1.symbol)
       player2.turn = false
-      i += 1
     end
 
     puts "#{player1.name} has selected #{move1}"
