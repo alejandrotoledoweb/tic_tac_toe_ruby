@@ -1,0 +1,103 @@
+require_relative '../lib/game_class'
+require_relative '../lib/class_board'
+require_relative '../lib/set_up'
+
+reset = true
+
+while reset
+  puts 'Welcome to our tic tac toe game!'
+  p1_name = true
+  p2_name = true
+
+  while p1_name
+    puts 'Player 1 type your name. '
+    begin
+      player1_name = gets.chomp.match('[a-zA-Z]+.*').string
+    rescue StandardError
+      puts 'Please enter a valid name (no numbers allowed)'
+    else
+      player1 = FirstSetup.new(player1_name, 'X')
+      puts "Welcome #{player1.name.upcase}, you are the first player, and you symbol is '#{player1.symbol}'"
+      sleep(0.8)
+      p1_name = false
+    end
+  end
+
+  while p2_name
+    puts 'Player 2 type your name. '
+    begin
+      player2_name = gets.chomp.match('[a-zA-Z]+.*').string
+    rescue StandardError
+      puts 'Please enter a valid name (no numbers allowed)'
+    else
+      player2 = FirstSetup.new(player2_name, 'O')
+      puts "Welcome #{player2.name.upcase}, you are the second player, and you symbol is '#{player2.symbol}'"
+      sleep(0.8)
+      p2_name = false
+    end
+  end
+
+  game = Game.new
+
+  while game.game_on
+    display_board_game(game.cells)
+
+    while player1.turn == false
+      puts "#{player1.name.upcase} is your turn, choose a spot (number)"
+      move1 = gets.chomp
+      puts "your move is #{move1}"
+      sleep(0.75)
+      player1.turn = game.get_move(move1, player1.symbol)
+      player2.turn = false
+    end
+
+    puts "#{player1.name} has selected #{move1}"
+    display_board_game(game.cells)
+
+    if game.winner_check
+      puts "#{player1.name} is the winner"
+      @game_on = false
+      break
+    end
+
+    if game.draw_check
+      puts 'It ended as a draw'
+      game.game_on = false
+      break
+    end
+
+    while player2.turn == false
+      puts "#{player2.name} is your turn, choose a spot (number)"
+      move2 = gets.chomp
+      puts "your move is #{move2}"
+      sleep(0.75)
+      player2.turn = game.get_move(move2, player2.symbol)
+      player1.turn = false
+    end
+
+    puts "#{player2.name} has selected #{move2}"
+    display_board_game(game.cells)
+
+    if game.winner_check
+      puts "#{player2.name} is the winner"
+      @game_on = false
+      break
+    end
+
+    next unless game.draw_check
+
+    puts "It's a draw"
+    game.game_on = false
+    next
+  end
+
+  puts "For PLAY AGAIN type 'yes' or to END the game type any other key"
+  p_again = gets.chomp
+  if p_again == 'yes'
+    reset = true
+    game = Game.new
+  else
+    reset = false
+    puts 'GAME OVER'
+  end
+end
