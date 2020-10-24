@@ -11,7 +11,7 @@ while reset
   p2_name = true
 
   while p1_name
-    puts 'Player 1 type your name. '
+    puts 'Player 1 please type your name. '
     begin
       player1_name = gets.chomp.match('[a-zA-Z]+.*').string
     rescue StandardError
