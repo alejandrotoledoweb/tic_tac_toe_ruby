@@ -1,6 +1,6 @@
-require_relative '../lib/game_class.rb'
-require_relative '../lib/class_board.rb'
-require_relative '../lib/setUp.rb'
+require_relative '../lib/game_class'
+require_relative '../lib/class_board'
+require_relative '../lib/set_up'
 
 reset = true
 
@@ -12,18 +12,30 @@ while reset
 
   while p1_name
     puts 'Player 1 type your name. '
-    player1 = FirstSetup.new(gets.chomp, 'X')
-    puts "Welcome #{player1.name.upcase!}, you are the first player, and you symbol is '#{player1.symbol}'"
-    sleep(0.8)
-    p1_name = false
+    begin
+      player1_name = gets.chomp.match('[a-zA-Z]+.*').string
+    rescue StandardError
+      puts 'Please enter a valid name (no numbers allowed)'
+    else
+      player1 = FirstSetup.new(player1_name, 'X')
+      puts "Welcome #{player1.name.upcase}, you are the first player, and you symbol is '#{player1.symbol}'"
+      sleep(0.8)
+      p1_name = false
+    end
   end
 
   while p2_name
     puts 'Player 2 type your name. '
-    player2 = FirstSetup.new(gets.chomp, 'O')
-    puts "Welcome #{player2.name.upcase!}, you are the second player, and you symbol is '#{player2.symbol}'"
-    sleep(0.8)
-    p2_name = false
+    begin
+      player2_name = gets.chomp.match('[a-zA-Z]+.*').string
+    rescue StandardError
+      puts 'Please enter a valid name (no numbers allowed)'
+    else
+      player2 = FirstSetup.new(player2_name, 'O')
+      puts "Welcome #{player2.name.upcase}, you are the second player, and you symbol is '#{player2.symbol}'"
+      sleep(0.8)
+      p2_name = false
+    end
   end
 
   game = Game.new
@@ -81,7 +93,7 @@ while reset
     next
   end
 
-  puts "For PLAY AGAIN type 'yes' to END the game type any other key"
+  puts "For PLAY AGAIN type 'yes' or to END the game type any other key"
   p_again = gets.chomp
   if p_again == 'yes'
     reset = true
