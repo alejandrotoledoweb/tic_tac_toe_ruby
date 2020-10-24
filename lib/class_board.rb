@@ -1,5 +1,4 @@
-# This method displays board
-
+# this the display board methods
 def display_board_game(arr)
   system 'clear'
   puts "  |  #{arr[6]}  |  #{arr[7]}  |  #{arr[8]}  |"
