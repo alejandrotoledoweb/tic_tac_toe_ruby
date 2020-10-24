@@ -19,6 +19,8 @@ class Game
       cells[move.to_i - 1] = symbol
       true
     else
+      puts 'spot already taken or not between 1~9, enter a valid number'
+      sleep(0.8)
       false
     end
   end
