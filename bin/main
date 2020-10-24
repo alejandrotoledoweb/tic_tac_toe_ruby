@@ -45,11 +45,6 @@ while reset
 
     while player1.turn == false
       puts "#{player1.name.upcase} is your turn, choose a spot (number)"
-      begin
-        
-      rescue => exception
-        
-      end
       move1 = gets.chomp
       puts "your move is #{move1}"
       sleep(0.75)
