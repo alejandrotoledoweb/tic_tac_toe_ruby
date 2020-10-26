@@ -19,7 +19,7 @@ while reset
     else
       player1 = FirstSetup.new(player1_name, 'X')
       puts "Welcome #{player1.name.upcase}, you are the first player, and you symbol is '#{player1.symbol}'"
-      sleep(0.8)
+      sleep(1.0)
       p1_name = false
     end
   end
@@ -33,7 +33,7 @@ while reset
     else
       player2 = FirstSetup.new(player2_name, 'O')
       puts "Welcome #{player2.name.upcase}, you are the second player, and you symbol is '#{player2.symbol}'"
-      sleep(0.8)
+      sleep(1.0)
       p2_name = false
     end
   end
@@ -47,7 +47,7 @@ while reset
       puts "#{player1.name.upcase} is your turn, choose a spot (number)"
       move1 = gets.chomp
       puts "your move is #{move1}"
-      sleep(0.75)
+      sleep(1.0)
       player1.turn = game.get_move(move1, player1.symbol)
       player2.turn = false
     end
@@ -71,7 +71,7 @@ while reset
       puts "#{player2.name} is your turn, choose a spot (number)"
       move2 = gets.chomp
       puts "your move is #{move2}"
-      sleep(0.75)
+      sleep(1.0)
       player2.turn = game.get_move(move2, player2.symbol)
       player1.turn = false
     end

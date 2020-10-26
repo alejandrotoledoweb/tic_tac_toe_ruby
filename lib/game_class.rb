@@ -20,7 +20,7 @@ class Game
       true
     else
       puts 'spot already taken or not between 1~9, enter a valid number'
-      sleep(0.8)
+      sleep(1.0)
       false
     end
   end
