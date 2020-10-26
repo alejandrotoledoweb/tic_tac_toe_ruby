@@ -2,23 +2,23 @@
 > Building Tic Tac Toe game in Ruby
  In this repository, we will show you the source code of this game on Ruby programming language, how to run it and explain some related concepts.
 
- bin
- Within the bin/ directory we generally put code that relates to running our actual program, running CLI applications Executable files are any files that contain instructions in a form that a computer's operating system or application can understand and follow. 
+ ## bin
 
- lib
+ Within the `bin/` directory we generally put code that relates to running our actual program, running CLI applications Executable files are any files that contain instructions in a form that a computer's operating system or application can understand and follow. 
+
+ ## lib
 
 The lib/ or Library directory in most Ruby programs and the app/ directory in Rails projects or complex Ruby programs, is where the majority of our code lives. Within this directory are all the files that define what our program can do. All of the methods and classes our program needs are defined within the files in this directory. 
 We spend the majority of our time building code in this directory...
 
 
-
 ## Built With
 
-- Ruby 2.7
-## Built With
+- Ruby
 
-- Ruby 2.7
-ollow these simple example steps.
+## Setup for the game
+
+- Follow these simple example steps.
 - Install Ruby on your local machine
 - Clone this repository into your computer
 - To run, enter this command in your terminal `main.rb`
