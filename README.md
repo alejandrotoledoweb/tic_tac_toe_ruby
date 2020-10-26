@@ -8,7 +8,11 @@
 
  ## lib
 
+<<<<<<< HEAD
 The `lib/` or Library directory in most Ruby programs and the `app/` directory in Rails projects or complex Ruby programs, is where the majority of our code lives. Within this directory are all the files that define what our program can do. All of the methods and classes our program needs are defined within the files in this directory. 
+=======
+The lib/ or Library directory in most Ruby programs and the app/ directory in Rails projects or complex Ruby programs, is where the majority of our code lives. Within this directory are all the files that define what our program can do. All of the methods and classes our program needs are defined within the files in this directory. 
+>>>>>>> 4a64ed4ecde106d8fd10aea54692ab62c1427232
 We spend the majority of our time building code in this directory...
 
 
