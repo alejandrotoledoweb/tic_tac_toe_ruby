@@ -30,7 +30,7 @@ We spend the majority of our time building code in this directory...
 - then it continues until we got a winner or a draw
  You can win if you complete a row, column or diagonal with your symbol as I show you in the picture down below
 
- [tic-tac-toe-pic](./example-tic-tac-toe.jpg)
+ ![tic-tac-toe-pic](./example-tic-tac-toe.jpg)
 
 ### Prerequisites
 
