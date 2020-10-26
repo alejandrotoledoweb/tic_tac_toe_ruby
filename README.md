@@ -23,6 +23,15 @@ We spend the majority of our time building code in this directory...
 - Clone this repository into your computer
 - To run, enter this command in your terminal `main.rb`
 
+## Game Rules
+
+- each player has to input his/her name
+- then each player has a turn to choose a spot in the board(input a number)
+- then it continues until we got a winner or a draw
+ You can win if you complete a row, column or diagonal with your symbol as I show you in the picture down below
+
+ [tic-tac-toe-pic](./example-tic-tac-toe.jpg)
+
 ### Prerequisites
 
 Only Ruby.
