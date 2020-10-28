@@ -1,8 +1,8 @@
-# rubocop:disable Metrics/BlockLength
 # spec/game_spec.rb
 
 require './lib/game_class'
 
+# rubocop:disable Metrics/BlockLength
 describe Game do
   describe '#get_move' do
     it 'returns true if there is a valid choosen spot' do
