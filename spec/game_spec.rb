@@ -1,3 +1,4 @@
+# rubocop:disable Lint/RedundantCopDisableDirective
 # spec/game_spec.rb
 
 require './lib/game_class'
@@ -50,3 +51,4 @@ describe Game do
 end
 
 # rubocop:enable Metrics/BlockLength
+# rubocop:enable Lint/RedundantCopDisableDirective
