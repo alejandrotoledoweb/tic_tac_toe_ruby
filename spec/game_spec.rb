@@ -26,5 +26,24 @@ describe Game do
         expect(game.winner_check).to eql(nil)
       end
     end
+    describe '#draw_check' do
+      it 'returns draw if board is not empty' do
+        game = Game.new
+        game.get_move('1', 'X')
+        game.get_move('2', 'X')
+        game.get_move('3', 'X')
+        game.get_move('4', 'X')
+        game.get_move('5', 'X')
+        game.get_move('6', 'X')
+        game.get_move('7', 'X')
+        game.get_move('8', 'X')
+        game.get_move('9', 'X')
+        expect(game.draw_check).to eql(true)
+      end
+      it 'returns nil' do
+        game = Game.new
+        expect(game.draw_check).to eql(nil)
+      end
+    end
   end
 end
