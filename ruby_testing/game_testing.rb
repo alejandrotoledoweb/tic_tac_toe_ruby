@@ -8,5 +8,22 @@ describe Game do
       game = Game.new
       expect(game.get_move('1', 'X')).to eql(true)
     end
+
+    it 'returns false if invalid move' do
+      game = Game.new
+      expect(game.get_move('s', 'X')).to eql(false)
+    end
+    describe '#winner?' do
+      it 'returns true if one of the condition is true' do
+        game = Game.new
+        game.get_move('1', 'X')
+        game.get_move('2', 'X')
+        game.get_move('3', 'X')
+        expect(game.winner?).to eql(true)
+      end
+      it 'returns false if combination is not valid' do
+        game = Game.new
+        expect(game.winner?).to eql(nil)
+      end
   end
 end
