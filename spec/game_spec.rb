@@ -1,3 +1,4 @@
+# rubocop:disable Metrics/BlockLength
 # spec/game_spec.rb
 
 require '../lib/game_class'
@@ -47,3 +48,5 @@ describe Game do
     end
   end
 end
+
+# rubocop:enable Metrics/BlockLength
