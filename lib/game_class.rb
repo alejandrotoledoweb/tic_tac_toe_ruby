@@ -12,6 +12,7 @@ class Game
     @winner = false
     @draw = false
     @cells = %w[1 2 3 4 5 6 7 8 9]
+    @win_changes = %w[[0 1 2] [3 4 5] [6 7 8] [0 3 6] [1 4 7] [2 5 8] [0 4 8] [2 4 6]]
   end
 
   def get_move(move, symbol)
