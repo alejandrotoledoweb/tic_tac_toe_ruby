@@ -1,7 +1,7 @@
 # rubocop:disable Metrics/BlockLength
 # spec/game_spec.rb
 
-require '../lib/game_class'
+require './lib/game_class'
 
 describe Game do
   describe '#get_move' do
