@@ -1,6 +1,7 @@
 # Tic Tac Toe Game
 
-In this repository we create a Tic Tac Toe game. This game is designed to be played on your local machine terminal.
+In this repository we create a Tic Tac Toe game. This game is designed to be played on your local machine in the terminal.
+
 Built with Ruby.
 
 ## Game Rules
@@ -42,9 +43,11 @@ Get a local copy of the repo with this command:
 Then open the project in your terminal and cd inside the `bin/` folder.
 
 Lastly, run `ruby main` in your terminal and you will see the first instructions for the game to input the name of the player 1. Like the image.
+
+
 ![](./instructions.png)
 
-### Run tests
+## Run tests
 
 - Install RSpec by typing in your terminal `gem install rspec`
 - After the installation is over, just type the command `rspec` in your teminal to check the results of the tests.
